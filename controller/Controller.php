@@ -8,13 +8,24 @@ $usu = new ConexionUsuario();
 
 if(isset($_POST['perfil'])){
             $_SESSION['usuarioElegido'] = $_POST['perfil'];
-            echo $_SESSION['usuarioElegido'];
+            // echo $_SESSION['usuarioElegido'];
             header('Location: ../vista/perfilUsuario.html');
 }
 
-// $usuId = $usu->getUserId($_POST['usuario']); 
-// $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['mensaje']); 
+if(isset($_POST['getDatos'])){
+    $usuPubli = new ConexionUsuarioPublicacion();
+    echo 'Hola';
+    // echo $_SESSION['usuarioElegido'];
+    // echo json_encode($usuPubli->obtenerInfoUsuarioPubli($_SESSION['usuarioElegido']));
+}
 
-// // header('Location: ../vista/prueba.html');
+if(isset($_POST['crear'])){
+    $usuId = $usu->getUserId($_POST['usuario']); 
+    $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['mensaje']); 
+    
+    header('Location: ../vista/prueba.html');    
+}
+
+
 
 

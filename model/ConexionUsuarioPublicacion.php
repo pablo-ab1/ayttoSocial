@@ -2,33 +2,12 @@
 
 require_once 'Conexion.php';
 
-class ConexionUsuario extends Conexion{
+class ConexionUsuarioPublicacion extends Conexion{
 
     public function __construct(){
         parent::__construct();
     }
 
-
-    public function insertarUsuario ($username, $email, $password){
-        try {
-            $query = "INSERT INTO usuario (username, email, password) VALUES (:username, :email, :password)";
-            $preparada = $this->pdo->prepare($query);
-
-            $preparada->bindParam(':username', $username);
-            $preparada->bindParam(':email', $email);
-            $preparada->bindParam(':password', $password);
-
-            if ($preparada->execute()) {
-                return "Insercion correcta";
-            }else {
-                return "Insercion fallida";
-            }
-
-
-        }catch(PDOException $e){
-            return "Error: " . $e->getMessage();
-        }
-    }
 
     public function getUsername($id){
         try {
@@ -56,13 +35,30 @@ class ConexionUsuario extends Conexion{
             $preparada->bindParam(':username', $username);
 
             if ($preparada->execute()) {
-                return $preparada->fetch(PDO::FETCH_ASSOC)['id'];
+                return $preparada->execute();
             }else {
                 echo "Insercion fallida";
             }
             
         }catch(PDOException $e){
             echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function obtenerInfoUsuarioPubli($username){
+        try{
+
+            $query = "SELECT username, categoria, texto  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id where usuario.username LIKE :username";
+            $preparada = $this->pdo->prepare($query);
+
+            $preparada->bindParam(':username', $username);
+
+            $preparada->execute();
+
+            return $preparada->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch(PDOException $e){
+            return "Error: " . $e->getMessage();
         }
     }
 }
