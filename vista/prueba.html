@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- <form action="../controller/Controller.php" method="post">
+        <input type="text" placeholder="Usuario" id="usuario" name="usuario" value="Prueba" required>
+        <select id="categoria" value="General" name="categoria" required> 
+            <option value="General">General</option>
+            <option value="Deportes">Deportes</option>
+            <option value="General">Urbanismo</option>
+            <option value="Deportes">Transporte</option>
+            <option value="General">Cultura</option>
+            <option value="Deportes">Policia</option>
+
+        </select>
+        <textarea maxlength="300" placeholder="Mensaje" name="mensaje" id="mensaje" required></textarea>
+        <button id="crear" name="crear">Crear</button>
+    </form> -->
+    
+    <main>
+        <form action="../controller/Controller.php" method="POST">
+        <div class="publicacion">
+            <div class="postHead">
+                <span><button><i class="fa-solid fa-user" style="color: #800040;"></i></button><a class="usuario">Usuario</a></span>
+                <span><a class="category">Categoría</a> <i class="fa-solid fa-trash" style="color:red;"></i></div></span>
+            <p class="contenido">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin pretium dolor, sit amet ultrices risus porttitor nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam nec aliquet lectus. Mauris pretium quis risus quis rutrum. Vestibulum aliquam congue congue.</p>
+        </div>
+    </form>
+        
+    </main>
+    <script src="../script/crearPublicacion.js"></script>
+</body>
+</html>
