@@ -30,12 +30,13 @@ class ConexionPublicacion extends Conexion{
         }
     }
 
-    public function obtenerPublicaciones(){
+    public function obtenerPublicaciones($limite){
         try{
 
-            $query = "SELECT username, categoria, texto, publicacion.id  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id";
+            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id ORDER BY id DESC LIMIT :lim,5";
             $preparada = $this->pdo->prepare($query);
 
+            $preparada->bindParam(':lim', $limite);
             $preparada->execute();
 
             return $preparada->fetchAll(PDO::FETCH_ASSOC);
@@ -43,5 +44,14 @@ class ConexionPublicacion extends Conexion{
         }catch(PDOException $e){
             return "Error: " . $e->getMessage();
         }
+    }
+
+    public function obtenerNumPublicaciones(){
+        $query = "SELECT COUNT(*) FROM `publicacion`";
+        $preparada = $this->pdo->prepare($query);
+
+        $preparada->execute();
+
+        return $preparada->fetchColumn();
     }
 }

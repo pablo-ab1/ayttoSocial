@@ -1,4 +1,5 @@
 let boton = document.querySelector('#crear');
+let numPag = 0;
 getPublicaciones();
 
 
@@ -11,22 +12,34 @@ getPublicaciones();
 //     // txtUsuario.value = txtCategoria.value = txtContenido.value = "";
 // });
 
+
+
 let publicaciones =[];
 
 async function getPublicaciones() {
-    let url = '../controller/GetPublicaciones.php';
+    let url = 'Location: ../controller/GetPublicaciones.php';
+    let datosEnvio = {'numPag': numPag};
+    console.log(url);
+
     try{
-        let respuesta = await fetch(url);    
+        let respuesta = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',  // Set content type as URL-encoded
+                body: new URLSearchParams(datosEnvio).toString()
+            },
+    });    
         if(!respuesta.ok){
             throw new Error(respuesta.statusText);
         }
+
         datos = await respuesta.text();
-        
+        console.log(datos);
         publicaciones = JSON.parse(datos);
         console.log(publicaciones);
         publicaciones.forEach(publicacion => {
             main = document.querySelector('main form');
-            main.prepend(crearPublicacion(publicacion.username, publicacion.categoria, publicacion.texto));
+            main.append(crearPublicacion(publicacion.username, publicacion.categoria, publicacion.texto, publicacion.fechaCreacion));
         });
 
     }catch (error){
@@ -34,15 +47,23 @@ async function getPublicaciones() {
     }
 }
 
-function crearPublicacion(txtUsuario, txtCategoria, txtContenido){
-    let publicacion = document.createElement('div');
+async function getNumPublicaciones() {
+    
+}
+
+function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion){
+    let txtFecha = comprobarFecha(fechaPublicacion);
+
+    let publicacion = document.createElement('article');
     let postHead = document.createElement('div');
     let spanUsu = document.createElement('span');
     let span = document.createElement('span');
     let postBody = document.createElement('div');
+    let postFooter = document.createElement('div');
     publicacion.classList.add('publicacion');
     postHead.classList.add('postHead');
     postBody.classList.add('postBody');
+    postFooter.classList.add('postFooter');
 
     let usuario = document.createElement('p');
     let category = document.createElement('p');
@@ -50,6 +71,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido){
     let boton = document.createElement('button');
     let iconUsu = document.createElement('i'); 
     let contenido =  document.createElement('p');
+    let fecha = document.createElement('p');
     usuario.classList.add('usuario');
     category.classList.add('category');
     contenido.classList.add('contenido');
@@ -64,6 +86,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido){
     boton.type = 'submit';
     boton.name = 'perfil';
     boton.value = txtUsuario;
+    fecha.textContent = txtFecha;
     
     boton.append(iconUsu);
     spanUsu.append(boton, usuario);
@@ -71,8 +94,33 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido){
     span.append(category, icon);
     postHead.append(span);
     postBody.append(contenido);
+    postFooter.append(fecha);
     publicacion.append(postHead);
     publicacion.append(postBody);
+    publicacion.append(postFooter);
 
     return publicacion;
 }
+
+function comprobarFecha(fecha){
+    let fechaPubli = new Date(fecha);
+    let hoy = new Date();
+    let texto;
+
+    if(hoy.getDate() == fechaPubli.getDate() && hoy.getMonth() == fechaPubli.getMonth() && hoy.getUTCFullYear() == fechaPubli.getUTCFullYear()){
+        if(String(fechaPubli.getMinutes()).length == 1){
+            texto = fechaPubli.getHours() + ':0' + fechaPubli.getMinutes();
+        }else{
+            texto = fechaPubli.getHours() + ':' + fechaPubli.getMinutes();
+        }
+    }else if(hoy.getUTCFullYear() == fechaPubli.getUTCFullYear()){
+        mes = +fechaPubli.getMonth() + 1;
+        texto = fechaPubli.getDate() + '/' + mes;
+    }else{
+        mes = +fechaPubli.getMonth() + 1;
+        texto = fechaPubli.getDate() + '/' + mes + '/' + fechaPubli.getUTCFullYear();
+    }
+
+    return(texto);
+}
+

@@ -8,7 +8,19 @@
     <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form action="../controller/Controller.php" method="post">
+    <header>
+        <i class="fa-solid fa-gopuram"></i>
+        <nav>
+            <a href="">Siguiendo</a>
+            <a href="" class="activo">Publicaciones</a>
+            <a href="">Denuncias</a>
+            <a href="">Encuestas</a>
+        </nav>
+        <i class="fa-solid fa-circle-user"></i>
+    </header>
+    
+    <form action="../controller/Controller.php" method="post" id="formCrear">
+        <button class="cerrar">X</button>
         <input type="text" placeholder="Usuario" id="usuario" name="usuario" required>
         <select id="categoria" value="General" name="categoria" required> 
             <option value="General">General</option>
@@ -24,16 +36,32 @@
     </form>
     
     <main>
-        <form action="../controller/Controller.php" method="POST">
-        <div class="publicacion">
-            <div class="postHead">
-                <span><button><i class="fa-solid fa-user" style="color: #800040;"></i></button><a class="usuario">Usuario</a></span>
-                <span><a class="category">Categoría</a> <i class="fa-solid fa-trash" style="color:red;"></i></div></span>
-            <p class="contenido">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin pretium dolor, sit amet ultrices risus porttitor nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam nec aliquet lectus. Mauris pretium quis risus quis rutrum. Vestibulum aliquam congue congue.</p>
-        </div>
+    <aside>
+        <h3>Random Fact</h3>
+        <p>Did you know? Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible!</p>
+    </aside>    
+    <form action="../controller/Controller.php" method="POST">
+       
     </form>
-        
+    <aside>
+        <div class="tarjeta">
+            <span class="hTarjeta"><i class="fa-solid fa-circle-user"></i> <p>Usuario</p></span>
+            <p class="bio">Committed to serving the community with integrity and transparency. Working towards sustainable development, promoting public services, and fostering civic engagement. Join us in building a better future for all.</p>
+        </div>
+    </aside> 
     </main>
+    <nav class="navegacion"></nav>
+    <button class="add">+</button>
     <script src="../script/crearPublicacion.js"></script>
+    <script src="../script/scriptPrincipal.js"></script>
 </body>
 </html>
+
+
+<!-- <div class="publicacion">
+    <div class="postHead">
+        <span><button><i class="fa-solid fa-user" style="color: #800040;"></i></button><a class="usuario">Usuario</a></span>
+        <span><a class="category">Categoría</a> <i class="fa-solid fa-trash" style="color:red;"></i></div></span>
+    <p class="contenido">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin pretium dolor, sit amet ultrices risus porttitor nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam nec aliquet lectus. Mauris pretium quis risus quis rutrum. Vestibulum aliquam congue congue.</p>
+    <div class="postFooter"><p>8:30</p></div>
+</div> -->
