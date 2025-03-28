@@ -4,4 +4,4 @@ require_once('../model/ConexionPublicacion.php');
 
 $cPubli = new ConexionPublicacion();
 
-echo json_encode($cPubli->obtenerPublicaciones($_POST['numPag']));
+echo json_encode($cPubli->obtenerPublicaciones(0));

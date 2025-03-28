@@ -1,6 +1,7 @@
 let boton = document.querySelector('#crear');
-let numPag = 0;
+let numPag = 1;
 getPublicaciones();
+
 
 
 // boton.addEventListener('click', () => {
@@ -17,18 +18,11 @@ getPublicaciones();
 let publicaciones =[];
 
 async function getPublicaciones() {
-    let url = 'Location: ../controller/GetPublicaciones.php';
-    let datosEnvio = {'numPag': numPag};
+    let url = '../controller/GetPublicaciones.php';
     console.log(url);
 
     try{
-        let respuesta = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',  // Set content type as URL-encoded
-                body: new URLSearchParams(datosEnvio).toString()
-            },
-    });    
+        let respuesta = await fetch(url);    
         if(!respuesta.ok){
             throw new Error(respuesta.statusText);
         }
@@ -37,18 +31,17 @@ async function getPublicaciones() {
         console.log(datos);
         publicaciones = JSON.parse(datos);
         console.log(publicaciones);
-        publicaciones.forEach(publicacion => {
-            main = document.querySelector('main form');
-            main.append(crearPublicacion(publicacion.username, publicacion.categoria, publicacion.texto, publicacion.fechaCreacion));
-        });
+        mostrarPublicaciones();
 
     }catch (error){
         console.error(error.message);
     }
 }
 
-async function getNumPublicaciones() {
-    
+function mostrarPublicaciones() {
+    for(i = numPag; i <= numPag*5; i++ )
+        main = document.querySelector('main form');
+        main.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));
 }
 
 function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion){
