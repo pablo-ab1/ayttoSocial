@@ -21,7 +21,7 @@ if(isset($_POST['getDatos'])){
 
 if(isset($_POST['crear'])){
     $usuId = $usu->getUserId($_POST['usuario']); 
-    $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['mensaje']); 
+    $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['comentario']); 
     
     header('Location: ../vista/prueba.html');    
 }

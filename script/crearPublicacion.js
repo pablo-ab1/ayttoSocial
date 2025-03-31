@@ -8,7 +8,7 @@ getPublicaciones();
 //     main = document.querySelector('main');
 //     txtUsuario = document.querySelector('#usuario');
 //     txtCategoria = document.querySelector('#categoria');
-//     txtContenido = document.querySelector('#mensaje');
+//     txtContenido = document.querySelector('#comentario');
 //     main.prepend(crearPublicacion(txtUsuario.value, txtCategoria.value, txtContenido.value));
 //     // txtUsuario.value = txtCategoria.value = txtContenido.value = "";
 // });
@@ -40,8 +40,8 @@ async function getPublicaciones() {
 
 function mostrarPublicaciones() {
     for(i = numPag; i <= numPag*5; i++ )
-        main = document.querySelector('main form');
-        main.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));
+        principal = document.querySelector('main .principal form');
+        principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));
 }
 
 function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion){

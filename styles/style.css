@@ -1,3 +1,21 @@
+:root {
+    --color-principal: #4169e1; 
+    --principal-claro: #5a8feb; 
+    --principal-oscuro: #2e4c8f; 
+    --color-secundario: #ff6347; 
+    --secundario-claro: #ff8269; 
+    --secundario-oscuro: #c43d2f; 
+    --color-acentuado: #f39c12; 
+    --background-color: #f4f6f9; 
+    --web-background-color: #ffffff; 
+    --text-color: #2c3e50; 
+    --link-color: #3498db; 
+    --border-color: #e0e0e0; 
+    --button-bg: var(--primary-color); 
+    --button-text-color: #ffffff; 
+    --button-hover-bg: var(--primary-dark); 
+}
+
 @font-face {
     font-family: 'Quicksand';
     src: url('../resources/fonts/Quicksand-VariableFont_wght.ttf');
@@ -5,11 +23,11 @@
 
 *{
     font-family: 'Quicksand', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #e0e0e0;
+    color: var(--text-color);
 }
 
 body{
-    background-color: #1e1e1e;
+    background-color: var(--web-background-color);
     margin: 0;
     padding: 0;
 }
@@ -25,11 +43,24 @@ header{
     top: 0;
     display: flex;
     justify-content: space-between;
-    align-items: bottom;
+    align-items: center;
     padding: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #2b2b2b;
-    background-color: #1e1e1e;
+
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background-color);
+}
+
+header span{
+    width: 25%;
+}
+
+header span:last-child{
+    display: flex;
+    justify-content: end;
+}
+
+header img{
+    max-height: 24px;
 }
 
 header i{
@@ -52,12 +83,18 @@ header nav a:hover{
 }
 
 aside{
-    max-width: 23%;
+    width: 20%;
     /* border: 1px solid white; */
 }
 
+aside.filtros{
+    border-right: 1px solid var(--border-color);
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
 main{
-    max-width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -65,8 +102,13 @@ main{
     /* border: 1px solid white; */
 }
 
+.principal{
+    border: 1px solid black;
+    width: 35%;
+}
+
 #formCrear{
-    background-color: #1e1e1e;
+    background-color: var(--background-color);
     max-width: 500px;
     position: fixed;
     top: 50%;
@@ -82,7 +124,7 @@ main{
 }
 
 #formCrear *{
-    background-color: #1e1e1e;
+    background-color: var(--background-color);
     border: none;
 }
 
@@ -107,12 +149,12 @@ main form{
 }
 
 .publicacion{
-    background-color: #2b2b2b ;
+    background-color: var(--background-color) ;
     width: 500px;
     padding: 10px;
     margin: auto;
-    box-shadow: 0 2px 9px #121212;
-    border-radius: 15px;
+    border: 1px solid var(--border-color);
+
 }
 
 .postHead{
@@ -138,10 +180,8 @@ main form{
 }
 
 .contenido{
-    border-top: 1px solid #FFFFFF;
     font-size: 0.9em;
-    padding: 10px;
-    margin-top: 2px;
+
 }
 
 form{
@@ -151,7 +191,7 @@ form{
    
 }
 
-#mensaje{
+#comentario{
     height: 100px;
     vertical-align: top;
  
@@ -210,4 +250,25 @@ form{
     border: 0;
     color: #121212;
     font-weight: bold;
+}
+
+
+
+.btnDesplegable{
+    width: 100%;
+}
+
+.desplegable{
+    display: flex;
+    flex-direction: column;
+}
+
+.noVisible{
+    display: none;
+}
+
+#formFiltros{
+    display: flex;
+    border: 1px solid black;
+    width: 100%;
 }
