@@ -1,5 +1,9 @@
 let boton = document.querySelector('#crear');
-let numPag = 1;
+let numPag = 5;
+let meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+let siguiente = document.getElementById('siguientePagina');
+let anterior = document.getElementById('anteriorPagina')
+console.log(siguiente);
 getPublicaciones();
 
 
@@ -38,10 +42,17 @@ async function getPublicaciones() {
     }
 }
 
+siguiente.addEventListener('click', ()=>{
+    numPag += 5;
+    mostrarPublicaciones();
+})
+
 function mostrarPublicaciones() {
-    for(i = numPag; i <= numPag*5; i++ )
+    for(i = numPag-5; i <= numPag-1; i++ ){
         principal = document.querySelector('main .principal form');
         principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));
+    }
+        
 }
 
 function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion){
@@ -60,7 +71,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
 
     let usuario = document.createElement('p');
     let category = document.createElement('p');
-    let icon = document.createElement('i');
+    // let icon = document.createElement('i');
     let boton = document.createElement('button');
     let iconUsu = document.createElement('i'); 
     let contenido =  document.createElement('p');
@@ -72,8 +83,8 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     usuario.textContent = txtUsuario;
     iconUsu.classList.add('fa-solid', 'fa-user', 'usuario');
     iconUsu.style.color = "#800040";
-    icon.classList.add('fa-solid', 'fa-trash');
-    icon.style.color = 'red';
+    // icon.classList.add('fa-solid', 'fa-trash');
+    // icon.style.color = 'red';
     category.textContent = txtCategoria;
     contenido.innerHTML = txtContenido;
     boton.type = 'submit';
@@ -84,7 +95,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     boton.append(iconUsu);
     spanUsu.append(boton, usuario);
     postHead.append(spanUsu);
-    span.append(category, icon);
+    span.append(category);
     postHead.append(span);
     postBody.append(contenido);
     postFooter.append(fecha);
@@ -107,8 +118,8 @@ function comprobarFecha(fecha){
             texto = fechaPubli.getHours() + ':' + fechaPubli.getMinutes();
         }
     }else if(hoy.getUTCFullYear() == fechaPubli.getUTCFullYear()){
-        mes = +fechaPubli.getMonth() + 1;
-        texto = fechaPubli.getDate() + '/' + mes;
+        mes = meses[+fechaPubli.getMonth() ] ;
+        texto = fechaPubli.getDate() + ' ' + mes;
     }else{
         mes = +fechaPubli.getMonth() + 1;
         texto = fechaPubli.getDate() + '/' + mes + '/' + fechaPubli.getUTCFullYear();

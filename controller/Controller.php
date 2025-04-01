@@ -20,9 +20,9 @@ if(isset($_POST['getDatos'])){
 }
 
 if(isset($_POST['crear'])){
-    $usuId = $usu->getUserId($_POST['usuario']); 
-    $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['comentario']); 
-    
+    // $usuId = $usu->getUserId($_POST['usuario']); 
+    $usuId = 1;
+    var_dump($cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['texto']));
     header('Location: ../vista/prueba.html');    
 }
 
