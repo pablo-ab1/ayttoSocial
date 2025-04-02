@@ -8,25 +8,40 @@ class ConexionUsuario extends Conexion{
         parent::__construct();
     }
 
+    // public function nuevoUsuario($usuario, $email, $contraseña)
+    // {
+    //     $c = password_hash($contraseña, PASSWORD_DEFAULT);
+    //     $consulta = $this->bd_conect->prepare('INSERT INTO usuarios VALUES (:u, :e, :c)');
+    //     $consulta->bindParam(':u', $usuario);
+    //     $consulta->bindParam(':e', $email);
+    //     $consulta->bindParam(':c', $c);
+    // }
 
-    public function insertarUsuario ($username, $email, $password){
+    public function insertarUsuario ($username, $email, $password, $nombre, $apellidos, $fechaNac){
+            
         try {
-            $query = "INSERT INTO usuario (username, email, password) VALUES (:username, :email, :password)";
+            
+            $query = "INSERT INTO usuario (username, email, password, nombre, apellidos, fechaNacimiento) VALUES (:username, :email, :password, :nombre, :apellidos, :fechaNac)";
+            
             $preparada = $this->pdo->prepare($query);
-
+           
+           
             $preparada->bindParam(':username', $username);
             $preparada->bindParam(':email', $email);
             $preparada->bindParam(':password', $password);
-
+            $preparada->bindParam(':fechaNac', $fechaNac);
+            $preparada->bindParam(':nombre', $nombre);
+            $preparada->bindParam(':apellidos', $apellidos);
+                   
             if ($preparada->execute()) {
-                return "Insercion correcta";
+                return true;
             }else {
-                return "Insercion fallida";
+                return false;
             }
 
 
         }catch(PDOException $e){
-            return "Error: " . $e->getMessage();
+            echo "Error: " . $e->getMessage();
         }
     }
 
@@ -41,6 +56,42 @@ class ConexionUsuario extends Conexion{
                 return $preparada->execute();
             }else {
                 return "Insercion fallida";
+            }
+            
+        }catch(PDOException $e){
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getPassword($email){
+        try {
+            $query = "SELECT password FROM usuario WHERE email = :email";
+            $preparada = $this->pdo->prepare($query);
+
+            $preparada->bindParam(':email', $email);
+
+            if ($preparada->execute()) {
+                return $preparada->execute();
+            }else {
+                return "Peticion fallida";
+            }
+            
+        }catch(PDOException $e){
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getDatosConEmail($email){
+        try {
+            $query = "SELECT * FROM usuario WHERE email = :email";
+            $preparada = $this->pdo->prepare($query);
+
+            $preparada->bindParam(':email', $email);
+
+            if ($preparada->execute()) {
+                return $preparada->fetchAll(PDO::FETCH_ASSOC);
+            }else {
+                return "Peticion fallida";
             }
             
         }catch(PDOException $e){

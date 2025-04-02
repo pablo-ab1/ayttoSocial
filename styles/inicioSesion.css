@@ -1,0 +1,146 @@
+:root {
+    --color-principal: #4169e1; 
+    --principal-claro: #5a8feb; 
+    --principal-oscuro: #2e4c8f; 
+    --principal-fondo: #D0E6FC  ;
+    --color-secundario: #ff6347; 
+    --secundario-claro: #ff8269; 
+    --secundario-oscuro: #c43d2f; 
+    --color-acentuado: #f39c12; 
+    --background-color: #f4f6f9; 
+    --web-background-color: #ffffff; 
+    --text-color: #2c3e50; 
+    --link-color: #3498db; 
+    --border-color: #e0e0e0; 
+    --button-bg: var(--color-principal); 
+    --button-text-color: #ffffff; 
+    --button-hover-bg: var(--principal-oscuro); 
+}
+
+body{
+    background-color: var(--background-color);
+}
+
+form{
+    max-width: 400px;
+    margin: 10% auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--web-background-color);
+    padding: 40px;
+    border: 1px solid var(--border-color);
+}
+
+form#formRegistro{
+    margin: 5px auto 0 auto;
+}
+
+img{
+    width: 80%;
+}
+
+form{
+    font-size: 14px;
+}
+
+#login, #registro{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.campo{
+    background-color: var(--background-color);
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    height: 3em;
+    margin-bottom: 1.5em;
+    padding: 0 10px;
+}
+
+.labelCampo{
+    margin-bottom: 0.5em;
+}
+
+.check{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.check span{
+    display: flex;
+    align-items: center;
+}
+
+button{
+    background-color: var(--button-bg);
+    border: none;
+    color: var(--button-text-color);
+    height: 3em;
+}
+
+#registro{
+    margin-bottom: 30px;
+}
+
+a{
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+#nombreApellidos{
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#nombreApellidos div:first-child{
+    display: flex;
+    flex-direction: column;
+}
+#nombreApellidos div:last-child{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#nombreApellidos div:last-child label{
+    align-self: flex-start;
+}
+
+#contraseña{
+    margin-bottom: 2px;
+}
+
+.descripcion{
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 10px;
+    margin-bottom: 1.5em;
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.titulo h1{
+    margin-bottom: 0;
+}
+
+#legal{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+}
+
+#linkRegistro{
+    margin-top: 30px;
+}

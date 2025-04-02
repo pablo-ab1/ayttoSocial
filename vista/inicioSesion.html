@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/inicioSesion.css">
+</head>
+
+<body>
+
+    <form action="../controller/inicioSesion.php" method="post">
+        <img src="../resources/img/logo.png" alt="">
+        <h1>Iniciar Sesión</h1>
+        <div id="login">
+            <label class="labelCampo" for="email">Email</label>
+            <input class="campo" type="email" name="email" id="email"  required>
+            <label class="labelCampo" for="password">Contraseña</label>
+            <input class="campo" type="password" name="pswd" id="password" required>
+            <span class="check"> <span><input type="checkbox" id="recordar" name="recordar"> <label for="recordar">Recordar Inicio de sesión</label></span> <a href="">Recuperar contraseña</a></span>
+            <button type="submit" name="enviar">Iniciar sesión</button>
+        </div>
+        <a id="linkRegistro" href="registro.html">¿No tienes cuenta? Registrarse</a>
+
+    </form>
+
+
+</body>
+
+</html>
