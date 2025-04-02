@@ -1,19 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     getDatos();
 })
 
 async function getDatos() {
     try {
         // Send the POST request using the fetch API
-        let respuesta = await fetch('../controller/GetUsuario.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',  // Content type
-            },
-            body: 'getDatos=si'  // POST body parameter
-        });
-
+        let respuesta = await fetch('../controller/GetDatosUsuario.php')
         // Parse the response as JSON
         const datos = await respuesta.json();
 

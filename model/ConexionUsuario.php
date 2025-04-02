@@ -99,6 +99,24 @@ class ConexionUsuario extends Conexion{
         }
     }
 
+    public function getDatosConId($id){
+        try {
+            $query = "SELECT nombre, apellidos, email, username, fechaNacimiento FROM usuario WHERE id = :id";
+            $preparada = $this->pdo->prepare($query);
+
+            $preparada->bindParam(':id', $id);
+
+            if ($preparada->execute()) {
+                return $preparada->fetchAll(PDO::FETCH_ASSOC);
+            }else {
+                return "Peticion fallida";
+            }
+            
+        }catch(PDOException $e){
+            return "Error: " . $e->getMessage();
+        }
+    }
+
     public function getUserId($username){
         try {
             $query = "SELECT id FROM usuario WHERE usuario.username LIKE :username";
