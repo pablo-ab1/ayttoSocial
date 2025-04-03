@@ -18,79 +18,42 @@
         </nav>
         <span><a href="perfilUsuario.html"><i class="fa-solid fa-circle-user"></i></a> </i> </span>
     </header>
-    
-    <!-- <form action="../controller/Controller.php" method="post" id="formCrear">
-        <button class="cerrar">X</button>
-        <input type="text" placeholder="Usuario" id="usuario" name="usuario" required>
-        <select id="categoria" value="General" name="categoria" required> 
-            <option value="General">General</option>
-            <option value="Deportes">Deportes</option>
-            <option value="General">Urbanismo</option>
-            <option value="Deportes">Transporte</option>
-            <option value="General">Cultura</option>
-            <option value="Deportes">Policia</option>
 
-        </select>
-        <textarea maxlength="300" placeholder="Comentario" name="comentario" id="comentario" required></textarea>
-        <button id="crear" name="crear">Crear</button>
-    </form> -->
-    
     <main>
     <aside class="filtros">
-        <form action="" name="filtros" id="formFiltros">
+        <form action="../controller/Controller.php" name="filtros" id="formFiltros" method="POST">
             <input type="text" name="busqueda" id="busqueda" placeholder='&#xf002; Buscar' style="font-family:Quicksand, FontAwesome">
             <button class="btnDesplegable">Categoría <i class="fa-solid fa-chevron-down"></i></button>
-            <div class="desplegable noVisible">
-                <span>
-                    <input type="radio" value="deportes" id="cDeportes" name="categoria">
-                    <label for="cDeportes">Deportes</label>
-                </span>
-                <span>
-                    <input type="radio" value="cultura" id="cCultura" name="categoria">
-                    <label for="cCultura">Cultura</label>
-                </span>
+            <div class="desplegable noVisible" id="filtroCategoria">
+                <!-- <input type="radio" value="deportes" id="cDeportes" name="categoria" class="radio">
+                <label for="cDeportes" class="opcion">Deportes</label>
+                <input type="radio" value="cultura" id="cCultura" name="categoria" class="radio">
+                <label for="cCultura" class="opcion">Cultura</label> -->
             </div>
             
             <!-- <la class="btnDesplegable">Fecha <input type="date" name="" id=""></button> -->
             <div class="filtroFecha">
                 <label for="fecha">Fecha</label>
-                <input type="date" name="fecha" id="fecha">
+                <input type="date" name="filtroFecha" id="fecha">
             </div>
-
-            <button class="btnDesplegable">Zona <i class="fa-solid fa-chevron-down"></i></button>
-            <div class="desplegable noVisible">
-                <span>
-                    <input type="radio" value="deportes" id="cDeportes" name="categoria">
-                    <label for="cDeportes">Deportes</label>
-                </span>
-                <span>
-                    <input type="radio" value="cultura" id="cCultura" name="categoria">
-                    <label for="cCultura">Cultura</label>
-                </span>
-            </div>
-            
-                
-            </select>
+            </div> 
+           <button type="submit" class="btn-filtrar" name="filtrar" >Filtrar</button>
         </form>
     </aside>
     <section class="principal">
         <form action="../controller/Controller.php" method="POST" id="formCrear">
             <article class="publicacion publicacionNueva">
-                <div class="postHead"><textarea placeholder="Nueva publicacion" name="texto" id="" ></textarea>  <select id="categoria" value="General" name="categoria" required> 
-                    <option value="General">General</option>
-                    <option value="Deportes">Deportes</option>
-                    <option value="General">Urbanismo</option>
-                    <option value="Deportes">Transporte</option>
-                    <option value="General">Cultura</option>
-                    <option value="Deportes">Policia</option>
-                </select></div>
+                <div class="postHead">
+                    <textarea placeholder="Nueva publicacion" name="texto" ></textarea>  
+                    <select id="categoria" name="categoria" required> 
+                    </select>
+            </div>
                 <div class="postBody "></div>
                 <div class="postFooter "><button id="crear" name="crear" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div> <!--<input type="file" accept="image/*">--> 
             </article>
         </form>
         <nav>
-            <button id="anteriorPagina"><i class="fa-solid fa-arrow-left"></i></button>
-            <button id="siguientePagina"><i class="fa-solid fa-arrow-right"></i></button>
+            <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
         </nav>
     </section>    
        
@@ -127,6 +90,7 @@
     <nav class="navegacion"></nav>
     <script src="../script/crearPublicacion.js"></script>
     <script src="../script/scriptPrincipal.js"></script>
+    
 </body>
 </html>
 

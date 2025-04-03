@@ -47,6 +47,41 @@ class ConexionPublicacion extends Conexion{
         }
     }
 
+    public function obtenerPublicacionesFecha($fecha){
+        try{
+
+            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha ORDER BY id DESC";
+            
+            
+            $preparada = $this->pdo->prepare($query);
+            $preparada->bindParam(':fecha', $fecha);
+            $preparada->execute();
+
+            return $preparada->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch(PDOException $e){
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function obtenerPublicacionesFechaCategoria($fecha, $categoria){
+        try{
+
+            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
+            
+            
+            $preparada = $this->pdo->prepare($query);
+            $preparada->bindParam(':fecha', $fecha);
+            $preparada->bindParam(':cat', $categoria);
+            $preparada->execute();
+
+            return $preparada->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch(PDOException $e){
+            return "Error: " . $e->getMessage();
+        }
+    }
+
     public function obtenerNumPublicaciones(){
         $query = "SELECT COUNT(*) FROM `publicacion`";
         $preparada = $this->pdo->prepare($query);

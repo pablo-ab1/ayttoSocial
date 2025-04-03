@@ -2,8 +2,7 @@ let boton = document.querySelector('#crear');
 let numPag = 5;
 let meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
 let siguiente = document.getElementById('siguientePagina');
-let anterior = document.getElementById('anteriorPagina')
-console.log(siguiente);
+let mostrarSiguiente = document.getElementById('mostrarSiguiente');
 getPublicaciones();
 
 
@@ -30,11 +29,10 @@ async function getPublicaciones() {
         if(!respuesta.ok){
             throw new Error(respuesta.statusText);
         }
-
+        
         datos = await respuesta.text();
         console.log(datos);
         publicaciones = JSON.parse(datos);
-        console.log(publicaciones);
         mostrarPublicaciones();
 
     }catch (error){
@@ -42,7 +40,7 @@ async function getPublicaciones() {
     }
 }
 
-siguiente.addEventListener('click', ()=>{
+mostrarSiguiente.addEventListener('click', (e)=>{
     numPag += 5;
     mostrarPublicaciones();
 })
