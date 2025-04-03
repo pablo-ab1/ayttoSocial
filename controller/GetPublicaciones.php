@@ -11,6 +11,9 @@ if(isset($_COOKIE['filtros'])){
     }else{
         echo json_encode($cPubli->obtenerPublicacionesFecha($filtros[0]));
     }
+}else if(isset($_COOKIE['busqueda'])){
+    $texto = '%' . $_COOKIE['busqueda'] . '%';
+    echo json_encode($cPubli->obtenerPublicacionesTexto($texto));
 }else{
     echo json_encode($cPubli->obtenerPublicaciones(0));
 }

@@ -34,5 +34,11 @@ if(isset($_POST['filtrar'])){
     header('Location: ../vista/prueba.html');
 }
 
+if(isset($_POST['buscar'])){
+    $termino = htmlspecialchars($_POST['busqueda']);
+    setcookie('busqueda',$termino, time()+30, '/');
+    header('Location: ../vista/prueba.html');
+}
+
 
 

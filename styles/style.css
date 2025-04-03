@@ -329,7 +329,6 @@ main{
     background-color: var(--background-color);
     border: none;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 15px;
     padding: 5px 15px;
     font-size: 15px;
 }
@@ -346,7 +345,7 @@ main{
 }
 
 #formFiltros .btn-filtrar{
-    margin-top: 20px;
+    margin: 15px 0 30px 0;
     background-color: var(--button-bg);
     color: var(--button-text-color);
     justify-content: center;

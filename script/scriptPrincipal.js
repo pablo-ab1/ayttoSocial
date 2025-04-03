@@ -4,12 +4,15 @@ const textarea = document.querySelector(".publicacionNueva textarea");
 const botonCrear = document.querySelector('#crear');
 const postFooter = document.querySelector('.publicacionNueva .postFooter');
 const botonImg = document.querySelector('.publicacionNueva .postFooter span');
+const proxEventos = document.querySelector('.proxEventos');
 let selectCategoria = document.getElementById('categoria');
 
 let filtroCat = document.getElementById('filtroCategoria');
 let categorias = [];
 let abierto = false;
+getEventos();
 getCategorias();
+
 
 botonDesplegable.forEach(boton => {
     boton.addEventListener('click', (e) => {
@@ -41,6 +44,27 @@ textarea.addEventListener("blur", function () {
     } 
 });
 
+async function getEventos() {
+    let url = '../controller/GetEventos.php';
+
+    try{
+        let respuesta = await fetch(url);    
+        if(!respuesta.ok){
+            throw new Error(respuesta.statusText);
+        }
+
+        datos = await respuesta.text();
+        console.log(datos);
+        evento = JSON.parse(datos);
+
+        evento.forEach(ev =>{
+            proxEventos.append(crearEvento(ev));
+        })
+
+    }catch (error){
+        console.error(error.message);
+    }
+}
 
 async function getCategorias() {
     
@@ -53,7 +77,6 @@ async function getCategorias() {
         }
 
         datos = await respuesta.text();
-        console.log(datos);
         cat = JSON.parse(datos);
 
         cat.forEach(categoria =>{
@@ -99,6 +122,28 @@ function crearOption(opcion, contenedor){
     opt.value = opcion;
     opt.textContent = opcion;
     contenedor.append(opt);
+}
+
+function crearEvento(ev){
+    let article = document.createElement('article');
+    let artHeader = document.createElement('span');
+    let titulo = document.createElement('h3');
+    let categoria = document.createElement('p');
+    let descripcion = document.createElement('p');
+    let fecha = document.createElement('p');
+
+    titulo.textContent = ev.titulo;
+    categoria = ev.categoria;
+    descripcion = ev.descripcion;
+    fecha = ev.fecha;
+
+    article.classList.add('evento');
+    artHeader.append(titulo, categoria);
+    article.append(artHeader);
+    article.append(descripcion);
+    article.append(fecha);
+
+    return article;
 }
 
 {/* <select id="categoria" value="General" name="categoria" required> 

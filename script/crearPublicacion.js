@@ -31,7 +31,6 @@ async function getPublicaciones() {
         }
         
         datos = await respuesta.text();
-        console.log(datos);
         publicaciones = JSON.parse(datos);
         mostrarPublicaciones();
 

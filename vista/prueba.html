@@ -23,15 +23,11 @@
     <aside class="filtros">
         <form action="../controller/Controller.php" name="filtros" id="formFiltros" method="POST">
             <input type="text" name="busqueda" id="busqueda" placeholder='&#xf002; Buscar' style="font-family:Quicksand, FontAwesome">
+            <button type="submit" class="btn-filtrar" name="buscar" >Buscar</button>
             <button class="btnDesplegable">Categoría <i class="fa-solid fa-chevron-down"></i></button>
             <div class="desplegable noVisible" id="filtroCategoria">
-                <!-- <input type="radio" value="deportes" id="cDeportes" name="categoria" class="radio">
-                <label for="cDeportes" class="opcion">Deportes</label>
-                <input type="radio" value="cultura" id="cCultura" name="categoria" class="radio">
-                <label for="cCultura" class="opcion">Cultura</label> -->
+                
             </div>
-            
-            <!-- <la class="btnDesplegable">Fecha <input type="date" name="" id=""></button> -->
             <div class="filtroFecha">
                 <label for="fecha">Fecha</label>
                 <input type="date" name="filtroFecha" id="fecha">
