@@ -6,6 +6,7 @@ const postFooter = document.querySelector('.publicacionNueva .postFooter');
 const botonImg = document.querySelector('.publicacionNueva .postFooter span');
 const proxEventos = document.querySelector('.proxEventos');
 let selectCategoria = document.getElementById('categoria');
+let cargando = document.getElementById('cargandoEventos');
 
 let filtroCat = document.getElementById('filtroCategoria');
 let categorias = [];
@@ -60,7 +61,7 @@ async function getEventos() {
         evento.forEach(ev =>{
             proxEventos.append(crearEvento(ev));
         })
-
+        cargando.style.display = 'none';
     }catch (error){
         console.error(error.message);
     }
@@ -130,18 +131,33 @@ function crearEvento(ev){
     let titulo = document.createElement('h3');
     let categoria = document.createElement('p');
     let descripcion = document.createElement('p');
-    let fecha = document.createElement('p');
+    let textoFecha = document.createElement('p');
+    let fecha = new Date(ev.fecha);
 
     titulo.textContent = ev.titulo;
-    categoria = ev.categoria;
-    descripcion = ev.descripcion;
-    fecha = ev.fecha;
+    categoria.textContent = ev.categoria;
+    descripcion.textContent = ev.descripcion;
+
+    let minutos = fecha.getMinutes();
+    if(String(minutos).length == 1){
+        minutos = `0${minutos}`;
+    }
+    let dia = fecha.getDate();
+    if(String(dia).length == 1){
+        dia = `0${dia}`;
+    }
+    let mes = +fecha.getMonth() +1;
+    if(String(mes).length == 1){
+        mes = `0${mes}`;
+    }
+
+    textoFecha.innerHTML = fecha.getHours() + ':' + minutos +  '<br>' + dia + '/' + mes + '/' + fecha.getFullYear();
 
     article.classList.add('evento');
     artHeader.append(titulo, categoria);
     article.append(artHeader);
     article.append(descripcion);
-    article.append(fecha);
+    article.append(textoFecha);
 
     return article;
 }

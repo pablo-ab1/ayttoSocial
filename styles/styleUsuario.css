@@ -1,0 +1,53 @@
+:root {
+    --color-principal: #4169e1; 
+    --principal-claro: #5a8feb; 
+    --principal-oscuro: #2e4c8f; 
+    --principal-fondo: #D0E6FC  ;
+    --color-secundario: #ff6347; 
+    --secundario-claro: #ff8269; 
+    --secundario-oscuro: #c43d2f; 
+    --color-acentuado: #f39c12; 
+    --background-color: #f4f6f9; 
+    --web-background-color: #ffffff; 
+    --text-color: #2c3e50; 
+    --link-color: #3498db; 
+    --border-color: #e0e0e0; 
+    --button-bg: var(--color-principal); 
+    --button-text-color: #ffffff; 
+    --button-hover-bg: var(--principal-oscuro); 
+}
+
+.infoUsuario{
+    border-right: 1px solid var(--border-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.infoUsuario img{
+    border-radius: 100%;
+    width: 100%;
+}
+
+.infoUsuario #datos{
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 5%;
+}
+
+#username{
+    padding-left: 5%;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 60%;
+}

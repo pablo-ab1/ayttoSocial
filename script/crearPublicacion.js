@@ -31,6 +31,7 @@ async function getPublicaciones() {
         }
         
         datos = await respuesta.text();
+        console.log(datos);
         publicaciones = JSON.parse(datos);
         mostrarPublicaciones();
 
@@ -47,12 +48,17 @@ mostrarSiguiente.addEventListener('click', (e)=>{
 function mostrarPublicaciones() {
     for(i = numPag-5; i <= numPag-1; i++ ){
         principal = document.querySelector('main .principal form');
-        principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));
+        console.log(publicaciones.actual);
+        if(publicaciones.actual){
+            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion, publicaciones.actual));    
+        }else{
+            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));    
+        }
     }
         
 }
 
-function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion){
+function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion, actual = false){
     let txtFecha = comprobarFecha(fechaPublicacion);
 
     let publicacion = document.createElement('article');
@@ -68,7 +74,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
 
     let usuario = document.createElement('p');
     let category = document.createElement('p');
-    // let icon = document.createElement('i');
+    let icon = document.createElement('i');
     let boton = document.createElement('button');
     let iconUsu = document.createElement('i'); 
     let contenido =  document.createElement('p');
@@ -80,8 +86,8 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     usuario.textContent = txtUsuario;
     iconUsu.classList.add('fa-solid', 'fa-user', 'usuario');
     iconUsu.style.color = "#800040";
-    // icon.classList.add('fa-solid', 'fa-trash');
-    // icon.style.color = 'red';
+    icon.classList.add('fa-solid', 'fa-trash');
+    icon.style.color = 'red';
     category.textContent = txtCategoria;
     contenido.innerHTML = txtContenido;
     boton.type = 'submit';
@@ -93,6 +99,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     spanUsu.append(boton, usuario);
     postHead.append(spanUsu);
     span.append(category);
+    if(actual){span.append(icon)};
     postHead.append(span);
     postBody.append(contenido);
     postFooter.append(fecha);

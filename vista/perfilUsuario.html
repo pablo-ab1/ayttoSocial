@@ -4,11 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/styleUsuario.css">
+    <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
     
 </head>
 <body>
-    <h1>Perfil Usuario</h1>
+    <header>
+        <span> <img src="../resources/img/logo.png" class="logo" alt=""> </span>
+        <nav>
+            <a href="">Siguiendo</a>
+            <a href="prueba.html" >Publicaciones</a>
+            <a href="">Denuncias</a>
+            <a href="">Encuestas</a>
+        </nav>
+        <span><a href="perfilUsuario.html"><i class="fa-solid fa-circle-user"></i></a> </i> </span>
+    </header>
+    <main>
+        <aside class="infoUsuario">
+            
+            <div class="info">
+                <img src="" alt="">
+                <h1 id="username"></h1>
+            <ul id="datos">
+
+            </ul>
+            </div>
+            
+        </aside>
+        <section class="principal">
+            <form action="../controller/Controller.php" method="POST" id="formCrear">
+                
+            
+        </form>
+        <nav>
+            <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
+        </nav>
+        </section>
+
+        <aside class="recomendados">
+            <section class="proxEventos">
+                <h2>Usuarios recomendados</h2>
+                <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
+            </section>
+        </aside> 
+    </main>
+    <footer>
+        <span>
+            <img src="../resources/img/logo.png" alt="">
+        </span>
+        <span><p>AytoSocial © 2025. Todos los derechos reservados.</p></span>
+        <span>
+            <a href="politicaCookies.html">Política de cookies</a>
+            <a href="">Política de Privacidad</a>
+            <a href="">Aviso Legal/Términos y Condiciones</a>
+        </span>
+    </footer>
 </body>
 
 <script src="../script/paginaUsuario.js"></script>
+<script src="../script/crearPublicacion.js"></script>
 </html>

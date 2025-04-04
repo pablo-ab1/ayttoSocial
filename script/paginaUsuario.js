@@ -4,23 +4,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function getDatos() {
     try {
-        // Send the POST request using the fetch API
         let respuesta = await fetch('../controller/GetDatosUsuario.php')
-        // Parse the response as JSON
         const datos = await respuesta.json();
 
-        // Check if there's an error message in the response
         if (datos.error) {
             console.error('Error:', datos.error);
         } else {
-            // Handle the valid data response
             console.log('User data:', datos);
-            // You can further process the `datos` here, e.g., display it on the page
+            mostrarDatos(datos[0]);
         }
 
     } catch (error) {
-        // Log any errors that occur during the fetch process
         console.error('Error:', error);
     }
+}
+
+function mostrarDatos(datos){
+    let contenedor = document.querySelector('.infoUsuario');
+    let titulo = contenedor.querySelector('#username');
+    let imagen = contenedor.querySelector('img');
+    let listaDatos = contenedor.querySelector('#datos');
+    let nombre  = document.createElement('li');
+    let apellidos = document.createElement('li');
+    let fechaNac = document.createElement('li');
+
+    fecha = datos.fechaNacimiento.substring(8,10) + '/' + datos.fechaNacimiento.substring(5,7) + '/' + datos.fechaNacimiento.substring(0,4);
+
+    titulo.textContent = datos.username;
+    imagen.src = datos.fotoPerfil;
+    nombre.textContent = datos.nombre;
+    apellidos.textContent = datos.apellidos;
+    fechaNac.textContent = fecha;
+    listaDatos.append(nombre, apellidos, fechaNac);
+
+
 }
 

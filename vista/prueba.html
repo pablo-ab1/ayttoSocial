@@ -16,7 +16,11 @@
             <a href="">Denuncias</a>
             <a href="">Encuestas</a>
         </nav>
-        <span><a href="perfilUsuario.html"><i class="fa-solid fa-circle-user"></i></a> </i> </span>
+        <span>
+        <form action="../controller/Controller.php" method="POST">
+            <button type="submit" name="perfil" value="propio"><a ><i class="fa-solid fa-circle-user"></i></a></button>
+        </form>
+    </span>
     </header>
 
     <main>
@@ -51,24 +55,14 @@
         <nav>
             <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
         </nav>
+    
     </section>    
        
-    </form>
+    
     <aside class="eventos">
         <section class="proxEventos">
             <h2>Próximos eventos</h2>
-            <article class="evento">
-                <h3>Concierto 1</h3>
-                <p>17/04 18:00 Hangar</p>
-            </article>
-            <article class="evento">
-                <h3>Teatro 1</h3>
-                <p>19/04 19:00 Teatro Principal</p>
-            </article>
-            <article class="evento">
-                <h3>Concierto 2</h3>
-                <p>21/04 22:00 Forum Evolución</p>
-            </article>
+            <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
         </section>
     </aside> 
     </main>

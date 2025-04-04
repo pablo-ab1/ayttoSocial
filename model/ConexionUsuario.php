@@ -101,7 +101,7 @@ class ConexionUsuario extends Conexion{
 
     public function getDatosConId($id){
         try {
-            $query = "SELECT nombre, apellidos, email, username, fechaNacimiento FROM usuario WHERE id = :id";
+            $query = "SELECT nombre, apellidos, email, username, fechaNacimiento, fotoPerfil FROM usuario WHERE id = :id";
             $preparada = $this->pdo->prepare($query);
 
             $preparada->bindParam(':id', $id);

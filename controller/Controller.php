@@ -7,9 +7,15 @@ $cPubli = new ConexionPublicacion();
 $usu = new ConexionUsuario();
 
 if(isset($_POST['perfil'])){
-            $_SESSION['usuarioElegido'] = $_POST['perfil'];
-            // echo $_SESSION['usuarioElegido'];
-            header('Location: ../vista/perfilUsuario.html');
+
+    if($_POST['perfil'] == 'propio'){
+        $_SESSION['usuarioElegido'] = 'propio';
+        header('Location: ../vista/perfilUsuario.html');
+    }
+
+            // $_SESSION['usuarioElegido'] = $_POST['perfil'];
+            // // echo $_SESSION['usuarioElegido'];
+            // header('Location: ../vista/perfilUsuario.html');
 }
 
 if(isset($_POST['getDatos'])){
