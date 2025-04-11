@@ -6,6 +6,9 @@ session_start();
 $cPubli = new ConexionPublicacion();
 $usu = new ConexionUsuario();
 
+$permisos = $usu->getDatosConId($_SESSION['usuarioActual'])['permisos'];
+echo($permisos);
+
 if(isset($_POST['perfil'])){
 
     if($_POST['perfil'] == 'propio'){
@@ -28,6 +31,7 @@ if(isset($_POST['getDatos'])){
 if(isset($_POST['crear'])){
     $usuId = $_SESSION['usuarioActual'];
     $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['texto']);
+    
     header('Location: ../vista/prueba.html');    
 }
 

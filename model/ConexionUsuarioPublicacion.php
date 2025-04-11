@@ -65,7 +65,7 @@ class ConexionUsuarioPublicacion extends Conexion{
     public function obtenerInfoIdUsuarioPubli($id){
         try{
 
-            $query = "SELECT username, categoria, texto, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id where usuario.id LIKE :id ORDER BY fechaCreacion DESC";
+            $query = "SELECT username, categoria, texto, publicacion.fechaCreacion, publicacion.id  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id where usuario.id LIKE :id ORDER BY fechaCreacion DESC";
             $preparada = $this->pdo->prepare($query);
 
             $preparada->bindParam(':id', $id);

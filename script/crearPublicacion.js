@@ -25,14 +25,16 @@ async function getPublicaciones() {
     console.log(url);
 
     try{
+        
         let respuesta = await fetch(url);    
         if(!respuesta.ok){
             throw new Error(respuesta.statusText);
         }
         
         datos = await respuesta.text();
-        console.log(datos);
+        // console.log(datos);
         publicaciones = JSON.parse(datos);
+        console.log(publicaciones);
         mostrarPublicaciones();
 
     }catch (error){
@@ -50,7 +52,7 @@ function mostrarPublicaciones() {
         principal = document.querySelector('main .principal form');
         console.log(publicaciones.actual);
         if(publicaciones.actual){
-            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion, publicaciones.actual));    
+            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion, publicaciones[i].id, publicaciones.actual));    
         }else{
             principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));    
         }
@@ -58,7 +60,7 @@ function mostrarPublicaciones() {
         
 }
 
-function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion, actual = false){
+function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion, id=false, actual = false){
     let txtFecha = comprobarFecha(fechaPublicacion);
 
     let publicacion = document.createElement('article');
@@ -88,6 +90,8 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     iconUsu.style.color = "#800040";
     icon.classList.add('fa-solid', 'fa-trash');
     icon.style.color = 'red';
+    icon.id = id;
+    icon.addEventListener('click', e => eliminarPublicacion(e));
     category.textContent = txtCategoria;
     contenido.innerHTML = txtContenido;
     boton.type = 'submit';
@@ -132,3 +136,20 @@ function comprobarFecha(fecha){
     return(texto);
 }
 
+function eliminarPublicacion(e){
+    let id = e.target.id;
+    let article = e.target.closest('article');
+    article.style.display = 'none';
+    fetch('../controller/EliminarPublicacion.php',{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'id=' + encodeURIComponent(id)
+    })
+    // .then(response => response.text())
+    // .then(data => {
+
+    // });
+
+}

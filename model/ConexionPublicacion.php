@@ -107,4 +107,18 @@ class ConexionPublicacion extends Conexion{
             return "Error: " . $e->getMessage();
         }
     }
+
+    public function borrarPublicacion($id){
+        try{
+            $query = "DELETE FROM publicacion WHERE id = :id";
+
+            $preparada = $this->pdo->prepare($query);
+            $preparada->bindParam(':id', $id);
+            $preparada->execute();
+
+        } catch(PDOException $e){
+            return "Error: " . $e->getMessage();
+        }
+        
+    }
 }

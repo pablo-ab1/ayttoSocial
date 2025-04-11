@@ -11,7 +11,15 @@ if (isset($_POST['enviar'])) {
         $passwd = $nuevoUsuario->getPassword($email);
         if($contraseña == $passwd){
             $_SESSION['usuarioActual'] = ($nuevoUsuario->getDatosConEmail($email)[0]['id']);
-            header('Location: ../vista/prueba.html');
+            switch($nuevoUsuario->getDatosConEmail($email)[0]['permisos']){
+                case 1:
+                    header('Location: ../vista/prueba.html');
+                    break;
+                case 2:
+                    header('Location: ../vistaAyuntamiento/prueba.html');
+                    break;
+            }
+            
             if($recordar){
                 setcookie('usuarioActual',json_encode($_SESSION['usuarioActual']),time()+60*60, '/');
             }

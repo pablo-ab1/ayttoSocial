@@ -1,11 +1,18 @@
 // let formCrear = document.querySelector('#formCrear');
 let botonDesplegable = document.querySelectorAll('.btnDesplegable');
-const textarea = document.querySelector(".publicacionNueva textarea");
+let textarea = false;
+if(document.querySelector(".publicacionNueva textarea")){
+    textarea = document.querySelector(".publicacionNueva textarea");
+}
 const botonCrear = document.querySelector('#crear');
 const postFooter = document.querySelector('.publicacionNueva .postFooter');
 const botonImg = document.querySelector('.publicacionNueva .postFooter span');
 const proxEventos = document.querySelector('.proxEventos');
-let selectCategoria = document.getElementById('categoria');
+let selectCategoria = false;
+if(document.getElementById('categoria')){
+    selectCategoria = document.getElementById('categoria');
+}
+
 let cargando = document.getElementById('cargandoEventos');
 
 let filtroCat = document.getElementById('filtroCategoria');
@@ -24,26 +31,30 @@ botonDesplegable.forEach(boton => {
     })
 });
 
-textarea.addEventListener("focus", function () {
-    this.style.height = "200px";
-    if(!abierto){
-        botonCrear.classList.toggle('noVisible');
-        botonImg.classList.toggle('noVisible');
-        postFooter.style.height = '30px';
-    }
-});
 
-textarea.addEventListener("blur", function () {
-    if (this.value.trim() === "") {
-        this.style.height = "50px";
-        botonCrear.classList.toggle('noVisible');
-        botonImg.classList.toggle('noVisible');
-        postFooter.style.height = '0px';
-        abierto = false;
-    }else{
-        abierto = true;
-    } 
-});
+if(textarea){
+    textarea.addEventListener("focus", function () {
+        this.style.height = "200px";
+        if(!abierto){
+            botonCrear.classList.toggle('noVisible');
+            botonImg.classList.toggle('noVisible');
+            postFooter.style.height = '30px';
+        }
+    });
+
+    textarea.addEventListener("blur", function () {
+        if (this.value.trim() === "") {
+            this.style.height = "50px";
+            botonCrear.classList.toggle('noVisible');
+            botonImg.classList.toggle('noVisible');
+            postFooter.style.height = '0px';
+            abierto = false;
+        }else{
+            abierto = true;
+        } 
+    });
+
+}
 
 async function getEventos() {
     let url = '../controller/GetEventos.php';
@@ -82,7 +93,10 @@ async function getCategorias() {
 
         cat.forEach(categoria =>{
             crearRadio(categoria.id, 'categoria', filtroCat);
-            crearOption(categoria.id, selectCategoria);
+            if(selectCategoria){
+                crearOption(categoria.id, selectCategoria);
+            }
+            
         })
 
     }catch (error){
