@@ -49,6 +49,3 @@ if(isset($_POST['buscar'])){
     setcookie('busqueda',$termino, time()+30, '/');
     header('Location: ../vista/prueba.html');
 }
-
-
-
