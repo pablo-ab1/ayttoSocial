@@ -132,7 +132,7 @@ main{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    min-height: 86vh;
+    min-height: 90vh;
     /* border: 1px solid white; */
 }
 

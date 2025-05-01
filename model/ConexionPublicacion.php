@@ -2,15 +2,17 @@
 
 require_once 'Conexion.php';
 
-class ConexionPublicacion extends Conexion{
+class ConexionPublicacion extends Conexion
+{
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function insertarPublicacion($id_usuario, $categoria, $texto) {
-        try{
+    public function insertarPublicacion($id_usuario, $categoria, $texto)
+    {
+        try {
 
             $query = "INSERT INTO publicacion (id_usuario, categoria, texto) VALUES (:id_usuario, :categoria, :texto)";
             $preparada = $this->pdo->prepare($query);
@@ -19,19 +21,36 @@ class ConexionPublicacion extends Conexion{
             $preparada->bindParam(':categoria', $categoria);
             $preparada->bindParam(':texto', $texto);
 
-            if($preparada->execute()){
+            if ($preparada->execute()) {
                 return "Publicacion creada";
-            }else{
+            } else {
                 return "La publicacion no se ha podido crear";
             }
-
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
     }
 
-    public function obtenerPublicaciones($limite){
-        try{
+    public function insertarPublicacionImagen($id_usuario, $categoria, $texto, $imagen)
+    {
+        $directorio = "../resources/imgPublicaciones/";
+        $archivo = $directorio . basename($_FILES['img']['name']);
+
+        // Optional: create the folder if it doesn't exist
+        if (!file_exists($directorio)) {
+            mkdir($directorio, 0777, true);
+        }
+
+        if (move_uploaded_file($_FILES['img']['tmp_name'], $archivo)) {
+            echo "Image successfully uploaded to: " . $archivo;
+        } else {
+            echo "Error uploading the image.";
+        }
+    }
+
+    public function obtenerPublicaciones($limite)
+    {
+        try {
 
             $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id ORDER BY id DESC";
             // LIMIT $limite,5
@@ -41,48 +60,48 @@ class ConexionPublicacion extends Conexion{
             $preparada->execute();
 
             return $preparada->fetchAll(PDO::FETCH_ASSOC);
-
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
     }
 
-    public function obtenerPublicacionesFecha($fecha){
-        try{
+    public function obtenerPublicacionesFecha($fecha)
+    {
+        try {
 
             $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha ORDER BY id DESC";
-            
-            
+
+
             $preparada = $this->pdo->prepare($query);
             $preparada->bindParam(':fecha', $fecha);
             $preparada->execute();
 
             return $preparada->fetchAll(PDO::FETCH_ASSOC);
-
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
     }
 
-    public function obtenerPublicacionesFechaCategoria($fecha, $categoria){
-        try{
+    public function obtenerPublicacionesFechaCategoria($fecha, $categoria)
+    {
+        try {
 
             $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
-            
-            
+
+
             $preparada = $this->pdo->prepare($query);
             $preparada->bindParam(':fecha', $fecha);
             $preparada->bindParam(':cat', $categoria);
             $preparada->execute();
 
             return $preparada->fetchAll(PDO::FETCH_ASSOC);
-
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
     }
 
-    public function obtenerNumPublicaciones(){
+    public function obtenerNumPublicaciones()
+    {
         $query = "SELECT COUNT(*) FROM `publicacion`";
         $preparada = $this->pdo->prepare($query);
 
@@ -91,34 +110,33 @@ class ConexionPublicacion extends Conexion{
         return $preparada->fetchColumn();
     }
 
-    public function obtenerPublicacionesTexto($texto){
-        try{
+    public function obtenerPublicacionesTexto($texto)
+    {
+        try {
 
             $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE texto like :texto ORDER BY id DESC";
-            
-            
+
+
             $preparada = $this->pdo->prepare($query);
             $preparada->bindParam(':texto', $texto);
             $preparada->execute();
 
             return $preparada->fetchAll(PDO::FETCH_ASSOC);
-
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
     }
 
-    public function borrarPublicacion($id){
-        try{
+    public function borrarPublicacion($id)
+    {
+        try {
             $query = "DELETE FROM publicacion WHERE id = :id";
 
             $preparada = $this->pdo->prepare($query);
             $preparada->bindParam(':id', $id);
             $preparada->execute();
-
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
-        
     }
 }

@@ -11,8 +11,8 @@
     <header>
         <span> <img src="../resources/img/logo.png" class="logo" alt=""> </span>
         <nav>
-            <a href="" class="activo">Publicaciones</a>
-            <a href="denuncias.html">Denuncias</a>
+            <a href="prueba.html" class="">Publicaciones</a>
+            <a href="" class="activo">Denuncias</a>
             <a href="">Encuestas</a>
         </nav>
         <span>
@@ -41,15 +41,16 @@
     </aside>
     <section class="principal">
         <form action="../controller/Controller.php" method="POST" id="formCrear">
-            <!-- <article class="publicacion publicacionNueva">
+            <article class="publicacion publicacionNueva">
                 <div class="postHead">
                     <textarea placeholder="Nueva publicacion" name="texto" ></textarea>  
                     <select id="categoria" name="categoria" required> 
                     </select>
             </div>
                 <div class="postBody "></div>
-                <div class="postFooter "><button id="crear" name="crear" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div> <input type="file" accept="image/*"> 
-            </article> -->
+                <div class="postFooter "><button id="crear" name="crearDenuncia" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div>
+                <input type="file" name="imagenPublicacion" id="imagenPublicacion" accept="image/*"> 
+            </article>
         </form>
         <nav>
             <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
