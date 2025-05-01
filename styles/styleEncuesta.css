@@ -1,0 +1,59 @@
+:root {
+    --color-principal: #4169e1; 
+    --principal-claro: #5a8feb; 
+    --principal-oscuro: #2e4c8f; 
+    --principal-fondo: #D0E6FC  ;
+    --color-secundario: #ff6347; 
+    --secundario-claro: #ff8269; 
+    --secundario-oscuro: #c43d2f; 
+    --color-acentuado: #f39c12; 
+    --background-color: #f4f6f9; 
+    --web-background-color: #ffffff; 
+    --text-color: #2c3e50; 
+    --link-color: #3498db; 
+    --border-color: #e0e0e0; 
+    --button-bg: var(--color-principal); 
+    --button-text-color: #ffffff; 
+    --button-hover-bg: var(--principal-oscuro); 
+}
+
+
+.encuesta{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    padding: 20px;
+}
+
+.encuesta h3{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.encuesta span{
+    display: flex;
+    align-items: center;
+}
+
+.votos{
+    background-color: blue;
+    height: 1em;
+    width: 10px;
+    margin: 5px 0px 10px 10px;
+}
+
+.encuesta label{
+    width: 45%;
+
+}
+
+.primera{
+    width: 90%;
+    background-color: var(--color-principal);
+}
+
+.otra{
+    width: 30%;
+    background-color: var(--principal-oscuro);
+}
