@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../../styles/style.css">
     <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <span> <img src="../resources/img/logo.png" class="logo" alt=""> </span>
+        <span> <img src="../../resources/img/logo.png" class="logo" alt=""> </span>
         <nav>
-            <a href="" class="activo">Publicaciones</a>
-            <a href="denuncias.html">Denuncias</a>
-            <a href="">Encuestas</a>
+            <a href="prueba.html" class="">Publicaciones</a>
+            <a href="" class="activo">Denuncias</a>
+            <a href="encuestas.html">Encuestas</a>
         </nav>
         <span>
-        <form action="../controller/Controller.php" method="POST">
+        <form action="../../controller/Controller.php" method="POST">
             <button type="submit" name="perfil" value="propio"><a ><i class="fa-solid fa-user"></i></a></button>
         </form>
     </span>
@@ -24,7 +24,7 @@
 
     <main>
     <aside class="filtros">
-        <form action="../controller/Controller.php" name="filtros" id="formFiltros" method="POST">
+        <form action="../../controller/Controller.php" name="filtros" id="formFiltros" method="POST">
             <input type="text" name="busqueda" id="busqueda" placeholder='&#xf002; Buscar' style="font-family:Quicksand, FontAwesome">
             <button type="submit" class="btn-filtrar" name="buscar" >Buscar</button>
             <button class="btnDesplegable">Categoría <i class="fa-solid fa-chevron-down"></i></button>
@@ -40,16 +40,17 @@
         </form>
     </aside>
     <section class="principal">
-        <form action="../controller/Controller.php" method="POST" id="formCrear">
-            <!-- <article class="publicacion publicacionNueva">
+        <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
+            <article class="publicacion publicacionNueva">
                 <div class="postHead">
                     <textarea placeholder="Nueva publicacion" name="texto" ></textarea>  
                     <select id="categoria" name="categoria" required> 
                     </select>
             </div>
                 <div class="postBody "></div>
-                <div class="postFooter "><button id="crear" name="crear" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div> <input type="file" accept="image/*"> 
-            </article> -->
+                <div class="postFooter "><button id="crear" value="denuncia" name="crear" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div>
+                <input type="file" name="imagenPublicacion" id="imagenPublicacion" accept="image/*"> 
+            </article>
         </form>
         <nav>
             <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
@@ -67,7 +68,7 @@
     </main>
     <footer>
         <span>
-            <img src="../resources/img/logo.png" alt="">
+            <img src="../../resources/img/logo.png" alt="">
         </span>
         <span><p>AytoSocial © 2025. Todos los derechos reservados.</p></span>
         <span>
@@ -77,8 +78,8 @@
         </span>
     </footer>
     <nav class="navegacion"></nav>
-    <script src="../script/crearPublicacion.js"></script>
-    <script src="../script/scriptPrincipal.js"></script>
+    <script src="../../script/crearDenuncia.js"></script>
+    <script src="../../script/scriptPrincipal.js"></script>
     
 </body>
 </html>

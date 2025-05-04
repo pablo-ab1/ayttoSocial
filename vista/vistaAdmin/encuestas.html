@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/styleEncuesta.css">
+    <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <span> <img src="../../resources/img/logo.png" class="logo" alt=""> </span>
+        <nav>
+            <a href="prueba.html">Publicaciones</a>
+            <a href="denuncias.html">Denuncias</a>
+            <a href="" class="activo">Encuestas</a>
+        </nav>
+        <span>
+        <form action="../../controller/Controller.php" method="POST">
+            <button type="submit" name="perfil" value="propio"><a ><i class="fa-solid fa-user"></i></a></button>
+        </form>
+    </span>
+    </header>
+
+    <main>
+    <aside class="filtros">
+        <form action="../../controller/Controller.php" name="filtros" id="formFiltros" method="POST">
+            <input type="text" name="busqueda" id="busqueda" placeholder='&#xf002; Buscar' style="font-family:Quicksand, FontAwesome">
+            <button type="submit" class="btn-filtrar" name="buscar" >Buscar</button>
+            <button class="btnDesplegable">Categoría <i class="fa-solid fa-chevron-down"></i></button>
+            <div class="desplegable noVisible" id="filtroCategoria">
+                
+            </div>
+            <div class="filtroFecha">
+                <label for="fecha">Fecha</label>
+                <input type="date" name="filtroFecha" id="fecha">
+            </div>
+            </div> 
+           <button type="submit" class="btn-filtrar" name="filtrar" >Filtrar</button>
+        </form>
+    </aside>
+    <section class="principal">
+        <form action="../../controller/Controller.php" method="POST" id="formEncuestas">
+            <article class="encuesta">
+                <h3>Titulo encuesta 3</h3>
+                <span><input type="radio" name="idEncuesta" value="1" id="1"> <label for="1">Parque Central de Villa Verde</label>  </span>
+                <div class="votos primera"></div>
+                <span><input type="radio" name="idEncuesta" value="2" id="2"> <label for="2">Plaza Mayor de San Arcadio</span>
+                </label> <div class="votos otra"></div>
+                <span><input type="radio" name="idEncuesta" value="3" id="3"> <label for="3"> Paseo Marítimo de Costa Clara</label></span>
+                <div class="votos otra"></div>
+                <span><input type="radio" name="idEncuesta" value="4" id="4"> <label for="4">Centro Cultural El Mirador</label></span>
+                <div class="votos otra"></div> 
+            </article>
+        </form>
+        <nav>
+            <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
+        </nav>
+    
+    </section>    
+       
+    
+    <aside class="eventos">
+        <section class="proxEventos">
+            <h2>Próximos eventos</h2>
+            <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
+        </section>
+    </aside> 
+    </main>
+    <footer>
+        <span>
+            <img src="../../resources/img/logo.png" alt="">
+        </span>
+        <span><p>AytoSocial © 2025. Todos los derechos reservados.</p></span>
+        <span>
+            <a href="politicaCookies.html">Política de cookies</a>
+            <a href="">Política de Privacidad</a>
+            <a href="">Aviso Legal/Términos y Condiciones</a>
+        </span>
+    </footer>
+    <nav class="navegacion"></nav>
+    <script src="../../script/crearEncuestas.js"></script>
+
+    <script src="../../script/scriptPrincipal.js"></script>
+    
+</body>
+</html>
+
+
+<!-- <div class="publicacion">
+    <div class="postHead">
+        <span><button><i class="fa-solid fa-user" style="color: #800040;"></i></button><a class="usuario">Usuario</a></span>
+        <span><a class="category">Categoría</a> <i class="fa-solid fa-trash" style="color:red;"></i></div></span>
+    <p class="contenido">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin pretium dolor, sit amet ultrices risus porttitor nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam nec aliquet lectus. Mauris pretium quis risus quis rutrum. Vestibulum aliquam congue congue.</p>
+    <div class="postFooter"><p>8:30</p></div>
+</div> -->

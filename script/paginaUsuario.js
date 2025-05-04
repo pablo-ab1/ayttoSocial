@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function getDatos() {
     try {
-        let respuesta = await fetch('../controller/GetDatosUsuario.php')
+        let respuesta = await fetch('../../controller/GetDatosUsuario.php')
         const datos = await respuesta.json();
 
         if (datos.error) {

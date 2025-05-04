@@ -57,7 +57,7 @@ if(textarea){
 }
 
 async function getEventos() {
-    let url = '../controller/GetEventos.php';
+    let url = '../../controller/GetEventos.php';
 
     try{
         let respuesta = await fetch(url);    
@@ -80,7 +80,7 @@ async function getEventos() {
 
 async function getCategorias() {
     
-    let url = '../controller/GetCategorias.php';
+    let url = '../../controller/GetCategorias.php';
 
     try{
         let respuesta = await fetch(url);    

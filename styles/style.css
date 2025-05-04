@@ -262,6 +262,23 @@ main{
     padding: 0;
 }
 
+.denuncia .postFooter{
+    justify-content: space-between;
+}
+
+.votos{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-left: 10px;
+}
+
+.votos span{
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
 .postFooter p{
     padding-top: 0;
     margin-right: 5px;
