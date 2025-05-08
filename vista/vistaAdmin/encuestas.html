@@ -41,7 +41,23 @@
         </form>
     </aside>
     <section class="principal">
-        <form action="../../controller/Controller.php" method="POST" id="formEncuestas">
+        <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
+            <article class="publicacion publicacionNueva">
+                <div class="postHead">
+                    <textarea placeholder="Nueva encuesta" name="titulo" ></textarea>  
+                    <select id="categoria" name="categoria" required> 
+                    </select>
+            </div>
+                <div class="encuesta ">
+                    <input type="text" id="opcion1" name="opcion1" required>
+                    <input type="text" id="opcion2" name="opcion2" required>
+                    <input type="text" id="opcion3" name="opcion3">
+                    <input type="text" id="opcion4" name="opcion4">
+                </div>
+                <div class="postFooter "><button id="crear" value="encuesta" name="crear" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div>
+            </article>
+        </form>
+        <!-- <form action="../../controller/Controller.php" method="POST" id="formEncuestas">
             <article class="encuesta">
                 <h3>Titulo encuesta 3</h3>
                 <span><input type="radio" name="idEncuesta" value="1" id="1"> <label for="1">Parque Central de Villa Verde</label>  </span>
@@ -53,7 +69,7 @@
                 <span><input type="radio" name="idEncuesta" value="4" id="4"> <label for="4">Centro Cultural El Mirador</label></span>
                 <div class="votos otra"></div> 
             </article>
-        </form>
+        </form> -->
         <nav>
             <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
         </nav>

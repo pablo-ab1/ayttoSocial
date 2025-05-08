@@ -3,10 +3,12 @@ require_once('../model/Conexion.php');
 require_once('../model/ConexionPublicacion.php');
 require_once('../model/ConexionUsuario.php');
 require_once('../model/ConexionDenuncia.php');
+require_once('../model/ConexionEncuesta.php');
 
 session_start();
 $cPubli = new ConexionPublicacion();
 $cDenun = new ConexionDenuncia();
+$cEncu = new ConexionEncuesta();
 $usu = new ConexionUsuario();
 
 
@@ -51,6 +53,11 @@ if (isset($_POST['crear'])) {
                 ($cDenun->insertarDenuncia($usuId, $_POST['categoria'], $_POST['texto']));
             }
             volver('denuncias.html');
+            break;
+
+        case 'encuesta':
+            $cEncu->insertarEncuesta($_POST['categoria'], $_POST['titulo'], $usuId, $_POST['opcion1'], $_POST['opcion2'], $_POST['opcion3'], $_POST['opcion4']);
+            volver('encuestas.html');
             break;
     }
 }

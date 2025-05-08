@@ -3,7 +3,7 @@ let encuestas =[];
 getEncuestas();
 
 async function getEncuestas() {
-    let url = '../controller/GetEncuestas.php';
+    let url = '../../controller/GetEncuestas.php';
     console.log(url);
 
     try{
@@ -18,7 +18,8 @@ async function getEncuestas() {
         encuestas = JSON.parse(datos);
         console.log(encuestas);
         encuestas.forEach(encuesta => {
-            crearEncuesta(encuesta);
+            principal = document.querySelector('main .principal form');
+            principal.append(crearEncuesta(encuesta));
         });
         // mostrarPublicaciones();
 
@@ -30,32 +31,80 @@ async function getEncuestas() {
 function crearEncuesta(encuesta){
     let article = document.createElement('article');
     article.id = encuesta.id;
+    let form = document.createElement('form');
+    form.action = '../../controller/ActualizarEncuesta.php';
+    form.method = 'POST';
+    form.id='formEncuestas';
 
+    max = Math.max(encuesta.resultadoOpcion1, encuesta.resultadoOpcion2, encuesta.resultadoOpcion3, encuesta.resultadoOpcion4);
     let titulo = document.createElement('h3');
     titulo.textContent = encuesta.titulo;
 
+    form.append(titulo);
+
     article.classList.add('encuesta');
     let primeraOpcion = [encuesta.opcion1, encuesta.resultadoOpcion1];
-    let primerSpan = document.createElement('span');
+    let primerSpan = crearSpan(encuesta.id, 1, primeraOpcion[0]);
+    let primerDiv = crearDiv(max, primeraOpcion[1]);
+    form.append(primerSpan, primerDiv);
+
     let segundaOpcion = [encuesta.opcion2, encuesta.resultadoOpcion2];
-    let segundoSpan = document.createElement('span');
-    if(encuesta.opcion3 != null){
+    let segundoSpan = crearSpan(encuesta.id, 2, segundaOpcion[0]);
+    segundoDiv = crearDiv(max, segundaOpcion[1]);
+    form.append (segundoSpan, segundoDiv);
+
+    if(encuesta.opcion3 != null && encuesta.opcion4 != ''){
         let terceraOpcion = [encuesta.opcion3, encuesta.resultadoOpcion3];
-        let tercerSpan = document.createElement('span');
+        let tercerSpan = crearSpan(encuesta.id, 3, terceraOpcion[0]);
+        let tercerDiv = crearDiv(max, terceraOpcion[1]);
+        form.append(tercerSpan,tercerDiv)
     }
-    if(encuesta.opcion4 != null){
+    if(encuesta.opcion4 != null && encuesta.opcion4 != ''){
         let cuartaOpcion = [encuesta.opcion4, encuesta.resultadoOpcion4];
-        let cuartoSpan = document.createElement('span');
+        let cuartoSpan = crearSpan(encuesta.id, 4, cuartaOpcion[0]);
+        let cuartoDiv = crearDiv(max, cuartaOpcion[1]);
+        form.append(cuartoSpan,cuartoDiv)
     }
 
+    let button = document.createElement('button');
+    button.type = 'submit';
+    button.name = 'actualizarEncuesta';
+    button.value = encuesta.id;
+    button.textContent = 'votar';
+
+    form.append(button);
+
+    article.append(form);
+    return article;
 }
 
-function crearSpan(id, nombre){
+function crearSpan(idEncuesta, idOpcion, texto){
+    let span = document.createElement('span');
     let radio = document.createElement('input');
+    let label = document.createElement('label')
     radio.type = 'radio';
-    radio.value = nombre;
-    radio.id = nombre.str.replace(/\s+/g, '');
+    radio.value = idOpcion;
+    radio.name= idEncuesta;
+    label.textContent = texto;
 
+    span.append(radio, label);
+
+    return span;
+}
+
+function crearDiv(max, votos){
+    div = document.createElement('div');
+    div.classList.add('votos');
+    if(votos == max){
+        div.classList.add('primera');
+        div.style.width = '80%'
+    }else{
+        size = votos * 80/max;
+        div.classList.add('otra');
+        div.style.width = size + '%';
+    }
+
+    return div;
 }
 
 {/* <article class="encuesta">
