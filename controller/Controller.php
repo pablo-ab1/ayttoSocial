@@ -38,11 +38,13 @@ if (isset($_POST['crear'])) {
     // var_dump($_POST['crear']);
     switch ($_POST['crear']) {
         case 'publicacion':
-            if (isset($_FILES['imagenPublicacion'])) {
-               echo( $cPubli->insertarPublicacionImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']));
+            var_dump($_FILES['imagenPublicacion']);
+            if ((strlen($_FILES['imagenPublicacion']['name']) != 0)) {
+               $cPubli->insertarPublicacionImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']);
             } else {
                 $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['texto']);
             }
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             // volver('prueba.html');
             break;
 
