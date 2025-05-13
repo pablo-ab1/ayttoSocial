@@ -52,15 +52,15 @@ function mostrarPublicaciones() {
         principal = document.querySelector('main .principal form');
         console.log(publicaciones.actual);
         if(publicaciones.actual){
-            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion, publicaciones[i].id, publicaciones.actual));    
+            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion, publicaciones[i].imagen, publicaciones[i].id, publicaciones.actual));    
         }else{
-            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion));    
+            principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion, publicaciones[i].imagen));    
         }
     }
         
 }
 
-function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion, id=false, actual = false){
+function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion, imagen, id=false, actual = false){
     let txtFecha = comprobarFecha(fechaPublicacion);
 
     let publicacion = document.createElement('article');
@@ -105,6 +105,9 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     span.append(category);
     if(actual){span.append(icon)};
     postHead.append(span);
+    if(imagen != null){
+        postBody.append(crearImagen(imagen));
+    }
     postBody.append(contenido);
     postFooter.append(fecha);
     publicacion.append(postHead);
@@ -112,6 +115,14 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     publicacion.append(postFooter);
 
     return publicacion;
+}
+
+function crearImagen(urlImagen){
+    url = '../'+ urlImagen;
+    imagen = document.createElement('img');
+    imagen.src = url;
+    imagen.loading = 'lazy';
+    return(imagen);
 }
 
 function comprobarFecha(fecha){

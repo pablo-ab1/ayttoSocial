@@ -1,13 +1,13 @@
-let boton = document.querySelector('#crear');
-let numPag = 5;
-let meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
-let siguiente = document.getElementById('siguientePagina');
-let mostrarSiguiente = document.getElementById('mostrarSiguiente');
+let botonDenuncia = document.querySelector('#crear');
+let numPagDenuncia = 5;
+let mesesDenuncias = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+let siguienteDenuncia = document.getElementById('siguientePagina');
+let mostrarSiguienteDenuncia = document.getElementById('mostrarSiguiente');
 getDenuncias();
 
 
 
-// boton.addEventListener('click', () => {
+// botonDenuncia.addEventListener('click', () => {
 //     main = document.querySelector('main');
 //     txtUsuario = document.querySelector('#usuario');
 //     txtCategoria = document.querySelector('#categoria');
@@ -42,13 +42,13 @@ async function getDenuncias() {
     }
 }
 
-mostrarSiguiente.addEventListener('click', (e)=>{
-    numPag += 5;
+mostrarSiguienteDenuncia.addEventListener('click', (e)=>{
+    numPagDenuncia += 5;
     mostrarDenuncias();
 })
 
 function mostrarDenuncias() {
-    for(i = numPag-5; i <= numPag-1; i++ ){
+    for(i = numPagDenuncia-5; i <= numPagDenuncia-1; i++ ){
         principal = document.querySelector('main .principal form');
         console.log(denuncias.actual);
         if(denuncias.actual){
@@ -82,7 +82,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     let usuario = document.createElement('p');
     let category = document.createElement('p');
     let icon = document.createElement('i');
-    let boton = document.createElement('button');
+    let botonDenuncia = document.createElement('button');
     let iconUsu = document.createElement('i'); 
     let contenido =  document.createElement('p');
     let fecha = document.createElement('p');
@@ -99,13 +99,13 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     icon.addEventListener('click', e => eliminarPublicacion(e));
     category.textContent = txtCategoria;
     contenido.innerHTML = txtContenido;
-    boton.type = 'submit';
-    boton.name = 'perfil';
-    boton.value = txtUsuario;
+    botonDenuncia.type = 'submit';
+    botonDenuncia.name = 'perfil';
+    botonDenuncia.value = txtUsuario;
     fecha.textContent = txtFecha;
     
-    boton.append(iconUsu);
-    spanUsu.append(boton, usuario);
+    botonDenuncia.append(iconUsu);
+    spanUsu.append(botonDenuncia, usuario);
     postHead.append(spanUsu);
     span.append(category);
     if(actual){span.append(icon)};
@@ -129,8 +129,8 @@ function crearSpanVotos(votosFavor, votosContra, span, id){
 
     let iconoFavor = document.createElement('i');
     let iconoContra = document.createElement('i');
-    iconoFavor.classList.add("fa-solid", "fa-up-long");
-    iconoContra.classList.add("fa-solid", "fa-down-long");
+    iconoFavor.classList.add("fa-solid", "fa-thumbs-up");
+    iconoContra.classList.add("fa-solid", "fa-thumbs-down");
 
     spanFavor.append(iconoFavor, textoVotosFavor);
     spanContra.append(iconoContra, textoVotosContra);
@@ -172,7 +172,7 @@ function comprobarFecha(fecha){
             texto = fechaPubli.getHours() + ':' + fechaPubli.getMinutes();
         }
     }else if(hoy.getUTCFullYear() == fechaPubli.getUTCFullYear()){
-        mes = meses[+fechaPubli.getMonth() ] ;
+        mes = mesesDenuncias[+fechaPubli.getMonth() ] ;
         texto = fechaPubli.getDate() + ' ' + mes;
     }else{
         mes = +fechaPubli.getMonth() + 1;

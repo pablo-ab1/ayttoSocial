@@ -27,11 +27,12 @@ if (isset($_POST['enviar'])) {
 
     if ($contraseña === $passwd[0]) {
         $_SESSION['usuarioActual'] = ($nuevoUsuario->getDatosConEmail($email)[0]['id']);
-        setcookie('permisos', json_encode($nuevoUsuario->getDatosConEmail($email)[0]['permisos']), time() + (7 * 24 * 60 * 60), '/');
+        $permisos = $nuevoUsuario->getDatosConEmail($email)[0]['permisos'];
+        setcookie('permisos', json_encode($permisos), time() + (7 * 24 * 60 * 60), '/');
         if ($recordar) {
             setcookie('usuarioActual', json_encode($_SESSION['usuarioActual']), time() + (7 * 24 * 60 * 60), '/');
         }
-        switch (json_decode($_COOKIE['permisos'])) {
+        switch ($permisos) {
             case 1:
                 header('Location: ../vista/vistaUsuario/prueba.html');
                 break;

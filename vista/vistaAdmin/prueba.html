@@ -18,8 +18,8 @@
         </nav>
         <span>
         <form action="../../controller/Controller.php" method="POST">
-            <a href="../../vista/inicioSesion.html">Cerrar Sesión</a>
-            <button type="submit" name="perfil" value="propio"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+            <button type="submit" class="btn" name="cerrarSesion">Cerrar Sesión</button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
         </form>
     </span>
     </header>
@@ -42,7 +42,7 @@
         </form>
     </aside>
     <section class="principal">
-        <form action="../../controller/Controller.php" method="POST" id="formCrear">
+        <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
             <article class="publicacion publicacionNueva">
                 <div class="postHead">
                     <textarea placeholder="Nueva publicacion" name="texto" ></textarea>  
@@ -50,7 +50,7 @@
                     </select>
             </div>
                 <div class="postBody "></div>
-                <div class="postFooter "><button id="crear" name="crear" value="publicacion" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div> <!--<input type="file" accept="image/*">--> 
+                <div class="postFooter"><button id="crear" name="crear" value="publicacion" class="noVisible">Crear</button><span class="noVisible"><input id="inputImagen" type="file" accept="image/*" name="imagenPublicacion"> </span></div> 
             </article>
         </form>
         <nav>

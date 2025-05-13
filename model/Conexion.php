@@ -3,15 +3,15 @@
 
 class Conexion
 {
-    private $host = 'sql201.infinityfree.com';        // Database host
-    private $dbname = 'if0_38928031_aytoSocial';  // Database name
-    private $username = 'if0_38928031'; // Database username
-    private $password = 'Ew0da7KzJYLSRr'; // Database password
+    // private $host = 'sql201.infinityfree.com';        // Database host
+    // private $dbname = 'if0_38928031_aytoSocial';  // Database name
+    // private $username = 'if0_38928031'; // Database username
+    // private $password = 'Ew0da7KzJYLSRr'; // Database password
 
-    // private $host = 'localhost';        // Database host
-    // private $dbname = 'aytoSocial';  // Database name
-    // private $username = 'root';// Database username
-    // private $password = 'root';// Database password
+    private $host = 'localhost';        // Database host
+    private $dbname = 'aytoSocial';  // Database name
+    private $username = 'root';// Database username
+    private $password = 'root';// Database password
 
     protected $pdo;
 

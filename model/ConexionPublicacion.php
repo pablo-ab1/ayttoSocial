@@ -31,28 +31,64 @@ class ConexionPublicacion extends Conexion
         }
     }
 
-    public function insertarPublicacionImagen($id_usuario, $categoria, $texto, $imagen)
-    {
-        $directorio = "../resources/imgPublicaciones/";
-        $archivo = $directorio . basename($_FILES['img']['name']);
+    // public function insertarPublicacionImagen($id_usuario, $categoria, $texto, $imagen)
+    // {
+    //     $directorio = "../resources/imgPublicaciones/";
+    //     $archivo = $directorio . basename($_FILES['img']['name']);
 
-        // Optional: create the folder if it doesn't exist
-        if (!file_exists($directorio)) {
-            mkdir($directorio, 0777, true);
-        }
+    //     // Optional: create the folder if it doesn't exist
+    //     if (!file_exists($directorio)) {
+    //         mkdir($directorio, 0777, true);
+    //     }
 
-        if (move_uploaded_file($_FILES['img']['tmp_name'], $archivo)) {
-            echo "Image successfully uploaded to: " . $archivo;
-        } else {
-            echo "Error uploading the image.";
+    //     if (move_uploaded_file($_FILES['img']['tmp_name'], $archivo)) {
+    //         echo "Image successfully uploaded to: " . $archivo;
+    //     } else {
+    //         echo "Error uploading the image.";
+    //     }
+    // }
+
+    public function insertarPublicacionImagen($id_usuario, $categoria, $texto){
+    $directorio = "../resources/images/";
+
+    if (isset($_FILES["imagenPublicacion"])) {
+    $pathTemporal = $_FILES["imagenPublicacion"]["tmp_name"];
+    $nombreArchivo = basename($_FILES["imagenPublicacion"]["name"]);
+    $ruta = $directorio . $nombreArchivo;
+
+    if (move_uploaded_file($pathTemporal, $ruta)) {
+         try {
+            $query = "INSERT INTO publicacion (id_usuario, categoria, texto, imagen) VALUES (:id_usuario, :categoria, :texto, :imagen)";
+            $preparada = $this->pdo->prepare($query);
+
+            $preparada->bindParam(':id_usuario', $id_usuario);
+            $preparada->bindParam(':categoria', $categoria);
+            $preparada->bindParam(':texto', $texto);
+            $preparada->bindParam(':imagen', $ruta);
+
+            if ($preparada->execute()) {
+                return "Publicacion creada";
+            } else {
+                return "La publicacion no se ha podido crear";
+            }
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
         }
+    } else {
+        return "Error moviendo el archivo";
+    }
+    } else {
+        return "No se ha subido ningun archivo o ha ocurrido un error";
+    }
+
+   
     }
 
     public function obtenerPublicaciones($limite)
     {
         try {
 
-            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id ORDER BY id DESC";
+            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.imagen, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id ORDER BY id DESC";
             // LIMIT $limite,5
             $preparada = $this->pdo->prepare($query);
 

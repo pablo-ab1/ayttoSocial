@@ -65,6 +65,12 @@ header span:last-child{
     justify-content: end;
 }
 
+header form{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 header img{
     max-height: 24px;
 }
@@ -251,8 +257,15 @@ main{
 }
 
 .postBody{
+    display: flex;
+    flex-direction: column;
     padding-left: 10px;
     margin-bottom: 0;
+}
+
+.postBody img{
+    align-self: center;
+    max-height: 400px;
 }
 
 .postFooter{
@@ -323,6 +336,17 @@ main{
 }
 
 
+.btn{
+    border-radius: 0;
+    border: none;
+    padding: 0.5em 1em;
+    background-color: var(--background-color);
+}
+
+.btn:hover{
+    color: var(--color-principal);
+    font-weight: 500;
+}
 
 .btnDesplegable{
     width: 100%;
@@ -508,6 +532,18 @@ aside.eventos{
     overflow: hidden;
     transition: all 0.5s ease-in-out;
 }
+
+.labelUpload {
+    display: flex;
+    align-items: baseline;
+    color: white;
+    cursor: pointer;
+  }
+
+#inputImagen{
+    
+}
+
 
 .publicacionNueva #crear{
     border-radius: 0;

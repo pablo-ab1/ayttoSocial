@@ -38,12 +38,12 @@ if (isset($_POST['crear'])) {
     // var_dump($_POST['crear']);
     switch ($_POST['crear']) {
         case 'publicacion':
-            if (isset($_POST['imagenPublicacion'])) {
-                $cPubli->insertarPublicacionImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']);
+            if (isset($_FILES['imagenPublicacion'])) {
+               echo( $cPubli->insertarPublicacionImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']));
             } else {
                 $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['texto']);
             }
-            volver('prueba.html');
+            // volver('prueba.html');
             break;
 
         case 'denuncia':
@@ -78,6 +78,13 @@ if (isset($_POST['buscar'])) {
     volver('prueba.html');
 }
 
+if(isset($_POST['cerrarSesion'])){
+    setcookie('usuarioActual', '', time() - (7 * 24 * 60 * 60), '/');
+    setcookie('permisos', '', time() - (7 * 24 * 60 * 60), '/');
+    session_unset();       
+    session_destroy();
+    header('Location: ../vista/inicioSesion.html');
+}
 
 function volver($documento)
 {
