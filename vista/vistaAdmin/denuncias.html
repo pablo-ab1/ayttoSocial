@@ -44,13 +44,12 @@
         <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
             <article class="publicacion publicacionNueva">
                 <div class="postHead">
-                    <textarea placeholder="Nueva publicacion" name="texto" ></textarea>  
+                    <textarea placeholder="Nueva denucia" name="texto" ></textarea>  
                     <select id="categoria" name="categoria" required> 
                     </select>
             </div>
                 <div class="postBody "></div>
-                <div class="postFooter "><button id="crear" value="denuncia" name="crear" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div>
-                <input type="file" name="imagenPublicacion" id="imagenPublicacion" accept="image/*"> 
+                <div class="postFooter"><button id="crear" name="crear" value="publicacion" class="noVisible">Crear</button><span class="noVisible"><input id="inputImagen" type="file" accept="image/*" name="imagenPublicacion"> </span></div> 
             </article>
         </form>
         <nav>

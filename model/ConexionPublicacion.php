@@ -88,7 +88,7 @@ class ConexionPublicacion extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.imagen, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id ORDER BY id DESC";
+            $query = "SELECT username, fotoPerfil, categoria, texto, publicacion.id, publicacion.imagen, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id ORDER BY id DESC";
             // LIMIT $limite,5
             $preparada = $this->pdo->prepare($query);
 
@@ -105,7 +105,7 @@ class ConexionPublicacion extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha ORDER BY id DESC";
+            $query = "SELECT username, fotoPerfil, categoria, texto, publicacion.id, publicacion.imagen, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha ORDER BY id DESC";
 
 
             $preparada = $this->pdo->prepare($query);
@@ -122,7 +122,7 @@ class ConexionPublicacion extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
+            $query = "SELECT username, fotoPerfil, categoria, texto, publicacion.id, publicacion.imagen, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
 
 
             $preparada = $this->pdo->prepare($query);
@@ -150,7 +150,7 @@ class ConexionPublicacion extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, publicacion.id, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE texto like :texto ORDER BY id DESC";
+            $query = "SELECT username, fotoPerfil, categoria, texto, publicacion.id, publicacion.imagen, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id WHERE texto like :texto ORDER BY id DESC";
 
 
             $preparada = $this->pdo->prepare($query);

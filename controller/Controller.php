@@ -70,14 +70,14 @@ if (isset($_POST['filtrar'])) {
     echo $filtro[1];
     setcookie('filtros', json_encode($filtro), time() + 60, '/');
 
-    volver('prueba.html');
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 }
 
 if (isset($_POST['buscar'])) {
     $termino = htmlspecialchars($_POST['busqueda']);
     setcookie('busqueda', $termino, time() + 30, '/');
 
-    volver('prueba.html');
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 }
 
 if(isset($_POST['cerrarSesion'])){

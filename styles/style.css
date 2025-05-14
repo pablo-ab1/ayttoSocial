@@ -79,6 +79,11 @@ header i{
     font-size: 24px;
 }
 
+
+header i:hover{
+    cursor: pointer;
+}
+
 header form a{
     text-decoration: none;
 }
@@ -213,16 +218,24 @@ main{
 .publicacion{
     background-color: var(--background-color) ;
     width: 80%;
-    padding: 10px;
+    /* padding: 10px; */
     margin: auto;
-    border: 1px solid var(--border-color);
+    /* border: 1px solid var(--border-color); */
 
 }
 
 .postHead{
     display: flex;
+    padding: 5px 10px 5px 10px;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+}
+
+.imgUsuario{
+    border-radius: 100%;
+    width: 24px;
 }
 
 .postHead span{
@@ -261,11 +274,29 @@ main{
     flex-direction: column;
     padding-left: 10px;
     margin-bottom: 0;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-top: none;
 }
 
-.postBody img{
+.contenedorImagen img{
     align-self: center;
+    justify-self: center;
+    width: 100%;
+}
+
+.contenedorImagen img:hover{
+    cursor: pointer;
+}
+
+.contenedorImagen{
     max-height: 400px;
+    align-self: center;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .postFooter{
@@ -273,6 +304,9 @@ main{
     justify-content: right;
     margin-top: 0;
     padding: 0;
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 0 10px;
 }
 
 .denuncia .postFooter{
@@ -346,6 +380,7 @@ main{
 .btn:hover{
     color: var(--color-principal);
     font-weight: 500;
+    cursor: pointer;
 }
 
 .btnDesplegable{
@@ -401,6 +436,7 @@ main{
 }
 
 #formFiltros .btn-filtrar:hover{
+    cursor: pointer;
     background-color: var(--button-hover-bg);
 }
 
@@ -515,6 +551,7 @@ aside.eventos{
 
 .publicacionNueva .postHead{
     align-items:flex-start;
+    padding-bottom: 10px;
 }
 
 .publicacionNueva select{
@@ -531,6 +568,7 @@ aside.eventos{
     height: 0;
     overflow: hidden;
     transition: all 0.5s ease-in-out;
+    padding-bottom: 10px;
 }
 
 .labelUpload {
@@ -539,10 +577,6 @@ aside.eventos{
     color: white;
     cursor: pointer;
   }
-
-#inputImagen{
-    
-}
 
 
 .publicacionNueva #crear{
@@ -589,4 +623,24 @@ footer span:last-child{
 
 footer img{
     height: 38px;
+}
+
+@media(max-width: 1100px){
+
+
+    aside.eventos{
+        display: none;
+    }
+
+    aside.filtros{
+        display: none;
+    }
+
+    section.principal{
+        width: 100%;
+    }
+
+    form#fromCrear{
+        width: 90%;
+    }
 }
