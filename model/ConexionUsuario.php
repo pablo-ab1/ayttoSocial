@@ -42,9 +42,32 @@ class ConexionUsuario extends Conexion
                 return false;
             }
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
+            echo "Error: " . $e->getMessage($username, $email, $nombre, $apellidos, $fechaNac);
         }
     }
+
+    public function actualizarUsuario($username, $email, $nombre, $apellidos, $fechaNac, $id){
+        try{
+            $query = "UPDATE usuario SET username = :username, email = :email, nombre = :nombre, apellidos = :apellidos, fechaNacimiento = :fechaNac WHERE id = :id";
+            $preparada = $this->pdo->prepare($query);
+
+            $preparada->bindParam(':username', $username);
+            $preparada->bindParam(':email', $email);
+            $preparada->bindParam(':fechaNac', $fechaNac);
+            $preparada->bindParam(':nombre', $nombre);
+            $preparada->bindParam(':apellidos', $apellidos);
+            $preparada->bindParam(':id', $id);
+            
+            if ($preparada->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage($username, $email, $nombre, $apellidos, $fechaNac);
+        }
+    }
+
 
     public function getUsername($id)
     {

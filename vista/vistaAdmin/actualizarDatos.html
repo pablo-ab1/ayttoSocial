@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/inicioSesion.css">
+</head>
+
+<body>
+
+    <form action="../../controller/ActualizarDatos.php" method="post" id="formRegistro">
+        <img src="../resources/img/logo.png" alt="">
+        <div class="titulo">
+            <h1>Actualizar datos</h1>
+            <p>Actualización de los datos personales</p>
+        </div>
+
+        <div id="registro">
+            <span id="nombreApellidos">
+                <div>
+                    <label class="labelCampo" for="nombre">Nombre</label>
+                    <input class="campo" type="text" name="nombre" id="nombre"  required>
+                </div>
+                <div>
+                    <label class="labelCampo" for="usuario">Apellidos</label>
+                    <input class="campo" type="text" name="apellidos" id="apellidos"  required>
+                </div>
+            </span>
+            <label class="labelCampo" for="fechaNac">Fecha de nacimiento</label>
+            <input class="campo" type="date" name="fechaNac" id="fechaNac" required>
+            <label class="labelCampo" for="usuario">Usuario</label>
+            <input class="campo" type="text" name="usuario" id="usuario" required>
+            <label class="labelCampo" for="email">Email</label>
+            <input class="campo" type="email" name="email" id="email" required>
+            
+            <button type="submit" name="enviar">Guardar</button>
+        </div>
+        <a href="perfilUsuario.html">Volver</a>
+
+    </form>
+
+
+</body>
+<script src="../../script/actualizarUsuario.js"></script>
+</html>
