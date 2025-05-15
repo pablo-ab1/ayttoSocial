@@ -52,15 +52,15 @@ function mostrarDenuncias() {
         principal = document.querySelector('main .principal form');
         console.log(denuncias.actual);
         if(denuncias.actual){
-            principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id, denuncias.actual));    
+            principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].fotoPerfil, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id, denuncias.actual));    
         }else{
-            principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id));    
+            principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].fotoPerfil, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id));    
         }
     }
         
 }
 
-function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicacion, votosFavor, votosContra, id, actual = false){
+function crearPublicacion(txtUsuario, txtCategoria, imagenUsuario, txtContenido, fechaPublicacion, votosFavor, votosContra, id, actual = false){
     let txtFecha = comprobarFecha(fechaPublicacion);
 
     let publicacion = document.createElement('article');
@@ -83,7 +83,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     let category = document.createElement('p');
     let icon = document.createElement('i');
     let botonDenuncia = document.createElement('button');
-    let iconUsu = document.createElement('i'); 
+    let iconUsu = document.createElement('img'); 
     let contenido =  document.createElement('p');
     let fecha = document.createElement('p');
     usuario.classList.add('usuario');
@@ -91,6 +91,8 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     contenido.classList.add('contenido');
 
     usuario.textContent = txtUsuario;
+    iconUsu.classList.add('imgUsuario');
+    iconUsu.src = imagenUsuario;
     iconUsu.classList.add('fa-solid', 'fa-user', 'usuario');
     iconUsu.style.color = "#800040";
     icon.classList.add('fa-solid', 'fa-trash');
@@ -105,7 +107,7 @@ function crearPublicacion(txtUsuario, txtCategoria, txtContenido, fechaPublicaci
     fecha.textContent = txtFecha;
     
     botonDenuncia.append(iconUsu);
-    spanUsu.append(botonDenuncia, usuario);
+    spanUsu.append(iconUsu, usuario);
     postHead.append(spanUsu);
     span.append(category);
     if(actual){span.append(icon)};

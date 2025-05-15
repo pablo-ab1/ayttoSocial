@@ -52,7 +52,7 @@ class ConexionDenuncia extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id ORDER BY id DESC LIMIT 100";
+            $query = "SELECT username, fotoPerfil, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id ORDER BY id DESC LIMIT 100";
             $preparada = $this->pdo->prepare($query);
 
             // $preparada->bindParam(':lim',(int)$limite);

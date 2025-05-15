@@ -40,7 +40,7 @@ if (isset($_POST['crear'])) {
         case 'publicacion':
             var_dump($_FILES['imagenPublicacion']);
             if ((strlen($_FILES['imagenPublicacion']['name']) != 0)) {
-               $cPubli->insertarPublicacionImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']);
+                $cPubli->insertarPublicacionImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']);
             } else {
                 $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['texto']);
             }
@@ -57,8 +57,8 @@ if (isset($_POST['crear'])) {
             break;
 
         case 'encuesta':
-            echo($cEncu->insertarEncuesta($_POST['categoria'], $_POST['titulo'], $usuId, $_POST['opcion1'], $_POST['opcion2'], $_POST['opcion3'], $_POST['opcion4']));
-            // header("Location: " . $_SERVER['HTTP_REFERER']);
+            echo ($cEncu->insertarEncuesta($_POST['categoria'], $_POST['titulo'], $usuId, $_POST['opcion1'], $_POST['opcion2'], $_POST['opcion3'], $_POST['opcion4']));
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             break;
     }
 }
@@ -79,10 +79,10 @@ if (isset($_POST['buscar'])) {
     header("Location: " . $_SERVER['HTTP_REFERER']);
 }
 
-if(isset($_POST['cerrarSesion'])){
+if (isset($_POST['cerrarSesion'])) {
     setcookie('usuarioActual', '', time() - (7 * 24 * 60 * 60), '/');
     setcookie('permisos', '', time() - (7 * 24 * 60 * 60), '/');
-    session_unset();       
+    session_unset();
     session_destroy();
     header('Location: ../vista/inicioSesion.html');
 }

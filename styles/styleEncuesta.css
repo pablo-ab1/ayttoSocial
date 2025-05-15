@@ -52,6 +52,10 @@
     margin-left: 0;
 }
 
+textarea:focus{
+    outline: none;
+}
+
 .primera{
     width: 90%;
     background-color: var(--principal-claro);

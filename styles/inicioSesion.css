@@ -144,3 +144,17 @@ a{
 #linkRegistro{
     margin-top: 30px;
 }
+
+.titulo img.fotoPerfil{
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.titulo label{
+    display: flex;
+    justify-content: center;
+}
