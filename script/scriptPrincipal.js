@@ -8,6 +8,9 @@ const botonCrear = document.querySelector('#crear');
 const postFooter = document.querySelector('.publicacionNueva .postFooter');
 const botonImg = document.querySelector('.publicacionNueva .postFooter span');
 const proxEventos = document.querySelector('.proxEventos');
+const asideFiltros = document.querySelector('.filtros');
+const btnFiltros = document.querySelector('.mostrarFiltros');
+const btnOcultarFiltros = document.querySelector('.ocultarFiltros');
 let selectCategoria = false;
 if(document.getElementById('categoria')){
     selectCategoria = document.getElementById('categoria');
@@ -176,5 +179,31 @@ function crearEvento(ev){
     return article;
 }
 
+btnFiltros.addEventListener('click', ()=>{
+    btnOcultarFiltros.style.display = 'block';
+    asideFiltros.style.display = 'flex';
+    btnFiltros.style.display = 'none';
+});
+
+btnOcultarFiltros.addEventListener('click', ()=>{
+    btnOcultarFiltros.style.display = 'none';
+    asideFiltros.style.display = 'none';
+    btnFiltros.style.display = 'block';
+})
+
+document.getElementById('inputImagen').addEventListener('change', (evento) => {
+    console.log('hola');
+  const file = evento.target.files[0];
+  const previsualizacion = document.getElementById('previsualizacion');
+
+
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+      previsualizacion.src = e.target.result;
+    };
+    
+    reader.readAsDataURL(file);
+});
 {/* <select id="categoria" value="General" name="categoria" required> 
 <option value="General">General</option> */}

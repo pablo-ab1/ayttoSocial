@@ -14,7 +14,7 @@ class ConexionEncuesta extends Conexion
     {
         try {
 
-            $query = "SELECT * FROM encuesta";
+            $query = "SELECT * FROM encuesta ORDER BY fechaCreacion DESC ";
             $preparada = $this->pdo->prepare($query);
             $preparada->execute();
 

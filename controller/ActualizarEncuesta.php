@@ -9,3 +9,5 @@ if (isset($_POST['actualizarEncuesta'])) {
     echo $id;
     $cEncu->aumentarVoto($_POST['actualizarEncuesta'], $_POST['' . $id]);
 }
+
+header("Location: " . $_SERVER['HTTP_REFERER']);

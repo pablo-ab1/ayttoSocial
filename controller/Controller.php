@@ -45,7 +45,6 @@ if (isset($_POST['crear'])) {
                 $cPubli->insertarPublicacion($usuId, $_POST['categoria'], $_POST['texto']);
             }
             header("Location: " . $_SERVER['HTTP_REFERER']);
-            // volver('prueba.html');
             break;
 
         case 'denuncia':
@@ -54,12 +53,12 @@ if (isset($_POST['crear'])) {
             } else {
                 ($cDenun->insertarDenuncia($usuId, $_POST['categoria'], $_POST['texto']));
             }
-            volver('denuncias.html');
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             break;
 
         case 'encuesta':
-            $cEncu->insertarEncuesta($_POST['categoria'], $_POST['titulo'], $usuId, $_POST['opcion1'], $_POST['opcion2'], $_POST['opcion3'], $_POST['opcion4']);
-            volver('encuestas.html');
+            echo($cEncu->insertarEncuesta($_POST['categoria'], $_POST['titulo'], $usuId, $_POST['opcion1'], $_POST['opcion2'], $_POST['opcion3'], $_POST['opcion4']));
+            // header("Location: " . $_SERVER['HTTP_REFERER']);
             break;
     }
 }

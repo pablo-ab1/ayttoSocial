@@ -33,6 +33,9 @@ body{
     padding: 0;
 }
 
+.elementoMovil, .elementoTablet{
+    display: none;
+}
 
 .activo{
     color: var(--color-principal);
@@ -73,6 +76,8 @@ header form{
 
 header img{
     max-height: 24px;
+    position: relative;
+        top: 5px;
 }
 
 header i{
@@ -279,6 +284,30 @@ main{
     border-top: none;
 }
 
+
+#inputImagen{
+        display: none;
+    }
+
+.iconoImagen{
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.iconoImagen:hover{
+    cursor: pointer;
+}
+
+.prev{
+    justify-content: right;
+    align-items: flex-end;
+}
+
+#previsualizacion{
+    width: 10%;
+    margin-right: 10px;
+}
+
 .contenedorImagen img{
     align-self: center;
     justify-self: center;
@@ -472,6 +501,10 @@ main{
     color: var(--button-text-color);
 }
 
+.mostrarFiltros, .ocultarFiltros{
+    display: none;
+}
+
 aside.eventos{
     border-left: 1px solid var(--border-color);
     display: flex;
@@ -626,10 +659,75 @@ footer img{
 }
 
 @media(max-width: 1100px){
+    main{
+        display: block;
+    }
+
+    .elementoOrdenador{
+        display: none;
+    }
+
+    .elementoTablet{
+        display: block;
+    }
+
+    .mostrarFiltros{
+        display: flex;
+        gap: 5px;
+        border-radius: 0;
+        border: none;
+        padding: 0.5em 1em;
+        background-color: var(--background-color);
+    }
+
+    .ocultarFiltros{
+        display: none;
+        gap: 5px;
+        border-radius: 0;
+        border: none;
+        padding: 0.5em 1em;
+        background-color: var(--background-color);
+    }
+
+    aside.filtros{
+        display: hidden;
+        z-index: 100;
+        width: 100%;
+    }
+
+    header img{
+        position: relative;
+        top: 5px;
+        margin-left: 5px;
+        width: 100px;
+    }
+
+    header form.elementoMovil{
+        gap: 10px;
+        display: flex;
+        justify-content: flex-end;
+        padding: 0;
+        margin-right: 10px;
+    }
+
+    header form.elementoMovil *{
+        margin: 0;
+        padding: 0;
+    }
 
 
     aside.eventos{
-        display: none;
+        display: flex;
+        width: 100%;
+  
+    }
+
+    section.proxEventos.elementoTablet{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
     }
 
     aside.filtros{
@@ -643,4 +741,66 @@ footer img{
     form#fromCrear{
         width: 90%;
     }
+
+    .postFooter{
+        font-family: 0em;
+    }
+
+    footer{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    footer span{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+    }
+
+    footer span p{
+        text-align: center;
+    }
+
+    footer img{
+        height: auto;
+        width: 50%;
+    }
+}
+
+@media(max-width: 650px){
+    
+
+    .elementoMovil{
+        display: block;
+    }
+    .activo i{
+        color: var(--color-principal);
+    }
+
+    .linksHeader{
+        display: none;
+    }
+
+    header img{
+        margin-left: 5px;
+        width: 80px;
+    }
+
+    header nav.elementoMovil{
+        width: 45%;
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        margin-left: 20px;
+    }
+
+    
+
+    header{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
 }

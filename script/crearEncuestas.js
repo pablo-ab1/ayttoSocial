@@ -34,7 +34,7 @@ function crearEncuesta(encuesta){
     let form = document.createElement('form');
     form.action = '../../controller/ActualizarEncuesta.php';
     form.method = 'POST';
-    form.id='formEncuestas';
+    form.classList.add('formEncuestas');
 
     max = Math.max(encuesta.resultadoOpcion1, encuesta.resultadoOpcion2, encuesta.resultadoOpcion3, encuesta.resultadoOpcion4);
     let titulo = document.createElement('h3');
@@ -70,7 +70,8 @@ function crearEncuesta(encuesta){
     button.type = 'submit';
     button.name = 'actualizarEncuesta';
     button.value = encuesta.id;
-    button.textContent = 'votar';
+    button.classList.add('btn-encuesta');
+    button.textContent = 'Votar';
 
     form.append(button);
 

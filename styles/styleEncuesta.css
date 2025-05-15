@@ -40,20 +40,102 @@
     background-color: blue;
     height: 1em;
     width: 10px;
-    margin: 5px 0px 10px 10px;
+    margin-bottom: 10px;
+    margin-left: 0;
 }
 
 .encuesta label{
     width: 45%;
+}
 
+.encuesta input{
+    margin-left: 0;
 }
 
 .primera{
     width: 90%;
-    background-color: var(--color-principal);
+    background-color: var(--principal-claro);
 }
 
 .otra{
     width: 30%;
     background-color: var(--principal-oscuro);
+}
+
+.btn-encuesta{
+    border: none;
+    background-color: var(--color-principal);
+    padding: 5px;
+    width: 15%;
+    align-self: center;
+    color: var(--button-text-color);
+}
+
+.btn-encuesta:hover{
+    background-color: var(--principal-oscuro);
+    cursor: pointer;
+}
+
+.formEncuestas{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    justify-content: space-around;
+}
+
+.encuestaNueva {
+    background-color: var(--web-background-color);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tituloEncuesta {
+    align-items: flex-start;
+    justify-content: space-between;
+    display: flex;
+}
+
+.tituloEncuesta select{
+    border-radius: 0;
+    border: 1px solid var(--border-color);
+    position: relative;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.tituloEncuesta textarea{
+    resize: none;
+    width: 86%;
+    border: none;
+    height: 3.8em;
+}
+
+.opciones{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 10px;
+}
+
+.opciones input{
+    border: none;
+    background-color: var(--background-color);
+    padding: 5px;
+}
+
+.encuestaNueva #crear{
+    border-radius: 0;
+    border: var(--border-color);
+    background-color: var(--button-bg);
+    padding: 5px 8px;
+    color: var(--button-text-color);
+}
+
+.encuestaNueva #crear:hover{
+    background-color: var(--button-hover-bg);
+    cursor: pointer;
 }
