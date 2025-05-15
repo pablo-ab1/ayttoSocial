@@ -10,14 +10,26 @@
 <body>
     <header>
         <span> <img src="../../resources/img/logo.png" class="logo" alt=""> </span>
-        <nav>
+        <nav class="linksHeader">
             <a href="prueba.html" class="">Publicaciones</a>
             <a href="" class="activo">Denuncias</a>
-            <a href="">Encuestas</a>
+            <a href="encuestas.html">Encuestas</a>
+            <a href="eventos.html" class="elementoTablet">Eventos</a>
+        </nav>
+        <nav class="elementoMovil">
+            <a href="prueba.html"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="" class="activo"><i class="fa-solid fa-triangle-exclamation"></i></a>
+            <a href="encuestas.html"><i class="fa-solid fa-square-poll-horizontal"></i></a>
+            <a href="eventos.html" class="elementoMovil"><i class="fa-solid fa-calendar-days"></i></a>
         </nav>
         <span>
-        <form action="../../controller/Controller.php" method="POST">
-            <button type="submit" name="perfil" value="propio"><a ><i class="fa-solid fa-user"></i></a></button>
+        <form action="../../controller/Controller.php" method="POST" class="elementoOrdenador">
+            <button type="submit" class="btn" name="cerrarSesion">Cerrar Sesión</button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+        </form>
+        <form action="../../controller/Controller.php" method="POST" class="elementoMovil">
+            <button type="submit" class="btn" name="cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
         </form>
     </span>
     </header>
@@ -39,16 +51,18 @@
            <button type="submit" class="btn-filtrar" name="filtrar" >Filtrar</button>
         </form>
     </aside>
+    <button class="elementoTablet mostrarFiltros">Filtros <i class="fa-solid fa-sort-down"></i></button>
+    <button class="elementoTablet ocultarFiltros">Filtros <i class="fa-solid fa-sort-up"></i></button>
     <section class="principal">
-        <form action="../../controller/Controller.php" method="POST" id="formCrear">
-             <article class="publicacion publicacionNueva">
+        <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
+            <article class="publicacion publicacionNueva">
                 <div class="postHead">
-                    <textarea placeholder="Nueva publicacion" name="texto" ></textarea>  
+                    <textarea placeholder="Nueva denucia" name="texto" ></textarea>  
                     <select id="categoria" name="categoria" required> 
                     </select>
             </div>
-                <div class="postBody "></div>
-                <div class="postFooter"><button id="crear" name="crear" value="publicacion" class="noVisible">Crear</button><span class="noVisible"><input id="inputImagen" type="file" accept="image/*" name="imagenPublicacion"> </span></div> 
+                <div class="postBody prev"><img src="" id="previsualizacion" alt=""></div>
+                <div class="postFooter"><button id="crear" name="crear" value="denuncia" class="noVisible">Crear</button><span class="noVisible"><input id="inputImagen" type="file" accept="image/*" name="imagenPublicacion"><label for="inputImagen"><i class="fa-solid fa-image iconoImagen"></i></label> </span></div> 
             </article>
         </form>
         <nav>
@@ -58,8 +72,8 @@
     </section>    
        
     
-    <aside class="eventos">
-        <section class="proxEventos">
+    <aside class="eventos elementoOrdenador">
+        <section class="proxEventos elementoOrdenador">
             <h2>Próximos eventos</h2>
             <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
         </section>
@@ -77,7 +91,7 @@
         </span>
     </footer>
     <nav class="navegacion"></nav>
-    <script src="../../script/crearPublicacion.js"></script>
+    <script src="../../script/crearDenuncia.js"></script>
     <script src="../../script/scriptPrincipal.js"></script>
     
 </body>

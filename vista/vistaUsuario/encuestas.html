@@ -11,14 +11,26 @@
 <body>
     <header>
         <span> <img src="../../resources/img/logo.png" class="logo" alt=""> </span>
-        <nav>
-            <a href="">Publicaciones</a>
-            <a href="">Denuncias</a>
-            <a href="" class="activo">Encuestas</a>
+        <nav class="linksHeader">
+            <a href="prueba.html">Publicaciones</a>
+            <a href="denuncias.html">Denuncias</a>
+            <a href="encuestas.html" class="activo">Encuestas</a>
+            <a href="eventos.html" class="elementoTablet">Eventos</a>
+        </nav>
+        <nav class="elementoMovil">
+            <a href="prueba.html"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="denuncias.html"><i class="fa-solid fa-triangle-exclamation"></i></a>
+            <a href="encuestas.html" class="activo"><i class="fa-solid fa-square-poll-horizontal"></i></a>
+            <a href="eventos.html" class="elementoMovil"><i class="fa-solid fa-calendar-days"></i></a>
         </nav>
         <span>
-        <form action="../../controller/Controller.php" method="POST">
-            <button type="submit" name="perfil" value="propio"><a ><i class="fa-solid fa-user"></i></a></button>
+        <form action="../../controller/Controller.php" method="POST" class="elementoOrdenador">
+            <button type="submit" class="btn" name="cerrarSesion">Cerrar Sesión</button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+        </form>
+        <form action="../../controller/Controller.php" method="POST" class="elementoMovil">
+            <button type="submit" class="btn" name="cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
         </form>
     </span>
     </header>
@@ -40,8 +52,13 @@
            <button type="submit" class="btn-filtrar" name="filtrar" >Filtrar</button>
         </form>
     </aside>
+    <button class="elementoTablet mostrarFiltros">Filtros <i class="fa-solid fa-sort-down"></i></button>
+    <button class="elementoTablet ocultarFiltros">Filtros <i class="fa-solid fa-sort-up"></i></button>
     <section class="principal">
-        <form action="../../controller/Controller.php" method="POST" id="formEncuestas">
+        <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
+            
+        </form>
+        <!-- <form action="../../controller/Controller.php" method="POST" id="formEncuestas">
             <article class="encuesta">
                 <h3>Titulo encuesta 3</h3>
                 <span><input type="radio" name="idEncuesta" value="1" id="1"> <label for="1">Parque Central de Villa Verde</label>  </span>
@@ -53,7 +70,7 @@
                 <span><input type="radio" name="idEncuesta" value="4" id="4"> <label for="4">Centro Cultural El Mirador</label></span>
                 <div class="votos otra"></div> 
             </article>
-        </form>
+        </form> -->
         <nav>
             <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
         </nav>
@@ -61,8 +78,8 @@
     </section>    
        
     
-    <aside class="eventos">
-        <section class="proxEventos">
+    <aside class="eventos elementoOrdenador">
+        <section class="proxEventos elementoOrdenador">
             <h2>Próximos eventos</h2>
             <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
         </section>
