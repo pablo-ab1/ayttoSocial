@@ -15,6 +15,7 @@ $usu = new ConexionUsuario();
 $permisos = $usu->getDatosConId($_SESSION['usuarioActual'])['permisos'];
 echo ($permisos);
 
+
 if (isset($_POST['perfil'])) {
 
     if ($_POST['perfil'] == 'propio') {
@@ -38,7 +39,6 @@ if (isset($_POST['crear'])) {
     // var_dump($_POST['crear']);
     switch ($_POST['crear']) {
         case 'publicacion':
-            var_dump($_FILES['imagenPublicacion']);
             if ((strlen($_FILES['imagenPublicacion']['name']) != 0)) {
                 $cPubli->insertarPublicacionImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']);
             } else {
@@ -48,8 +48,8 @@ if (isset($_POST['crear'])) {
             break;
 
         case 'denuncia':
-            if (isset($_POST['imagenPublicacion'])) {
-                ($cDenun->insertarDenunciaImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenPublicacion']));
+            if ((strlen($_FILES['imagenDenuncia']['name']) != 0)) {
+                echo ($cDenun->insertarDenunciaImagen($usuId, $_POST['categoria'], $_POST['texto'], $_POST['imagenDenuncia']));
             } else {
                 ($cDenun->insertarDenuncia($usuId, $_POST['categoria'], $_POST['texto']));
             }

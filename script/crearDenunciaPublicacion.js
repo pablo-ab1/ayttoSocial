@@ -17,8 +17,11 @@ getDenuncias();
 // });
 
 
-let denuncias = [];
+
+let denuncias =[];
+let publicaciones = [];
 let denunciasPublicaciones =[];
+
 
 async function getDenuncias() {
     let url = '../../controller/GetDenuncias.php';
@@ -33,8 +36,39 @@ async function getDenuncias() {
         
         datos = await respuesta.text();
         denuncias = JSON.parse(datos);
-        console.log(denuncias);
-        mostrarDenuncias();
+        for( let denuncia in denuncias) {
+            denuncias[denuncia].tipo = 'denuncia';
+            denunciasPublicaciones.push(denuncias[denuncia]);
+        };
+        // console.log(denunciasPublicaciones);
+        getPublicaciones();
+        
+
+    }catch (error){
+        console.error(error.message);
+    }
+}
+
+async function getPublicaciones() {
+    let url = '../../controller/GetPublicaciones.php';
+    console.log(url);
+
+    try{
+        
+        let respuesta = await fetch(url);    
+        if(!respuesta.ok){
+            throw new Error(respuesta.statusText);
+        }
+        
+        datos = await respuesta.text();
+        publicaciones = JSON.parse(datos);
+        for(let publicacion in publicaciones){
+            publicaciones[publicacion].tipo = 'publicacion';
+            denunciasPublicaciones.push(publicaciones[publicacion]);
+        }
+        console.log(publicaciones);
+        console.log(denunciasPublicaciones);
+        mostrarDenunciasPublicaciones();
 
     }catch (error){
         console.error(error.message);
@@ -43,24 +77,22 @@ async function getDenuncias() {
 
 mostrarSiguienteDenuncia.addEventListener('click', (e)=>{
     numPagDenuncia += 5;
-    mostrarDenuncias();
+    mostrarDenunciasPublicaciones();
 })
 
-function mostrarDenuncias() {
+function mostrarDenunciasPublicaciones() {
     for(i = numPagDenuncia-5; i <= numPagDenuncia-1; i++ ){
         principal = document.querySelector('main .principal form');
-        console.log(denuncias.actual);
-        if(denuncias.actual){
-            console.log('Ho Hey')
-            principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].fotoPerfil, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].imagen, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id, denuncias.actual));    
+        if(denunciasPublicaciones[i] == 'denuncia'){
+            principal.append(crearDenuncia(denunciasPublicaciones[i].username, denunciasPublicaciones[i].categoria, denunciasPublicaciones[i].fotoPerfil, denunciasPublicaciones[i].texto, denunciasPublicaciones[i].fechaCreacion, denunciasPublicaciones[i].imagen, denunciasPublicaciones[i].votosFavor, denunciasPublicaciones[i].votosContra, denunciasPublicaciones[i].id));    
         }else{
-            principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].fotoPerfil, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].imagen, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id));    
+            principal.append(crearPublicacion(denunciasPublicaciones[i].username, denunciasPublicaciones[i].fotoPerfil, denunciasPublicaciones[i].categoria, denunciasPublicaciones[i].texto, denunciasPublicaciones[i].fechaCreacion, denunciasPublicaciones[i].imagen, denunciasPublicaciones[i].id)); 
         }
     }
         
 }
 
-function crearPublicacion(txtUsuario, txtCategoria, imagenUsuario, txtContenido, fechaPublicacion, imagen, votosFavor, votosContra, id, actual = false){
+function crearDenuncia(txtUsuario, txtCategoria, imagenUsuario, txtContenido, fechaPublicacion, imagen, votosFavor, votosContra, id){
     let txtFecha = comprobarFecha(fechaPublicacion);
 
     let publicacion = document.createElement('article');
@@ -112,13 +144,75 @@ function crearPublicacion(txtUsuario, txtCategoria, imagenUsuario, txtContenido,
     spanUsu.append(iconUsu, usuario);
     postHead.append(spanUsu);
     span.append(category);
-    if(actual){span.append(icon)};
+    span.append(icon);
     postHead.append(span);
     postBody.append(contenido);
     postFooter.append(spanVotos, fecha);
     publicacion.append(postHead);
     if(imagen != null){
         contenedorImagen.append(crearImagen(imagen));
+        publicacion.append(contenedorImagen);
+    }
+    publicacion.append(postBody);
+    publicacion.append(postFooter);
+
+    return publicacion;
+}
+
+function crearPublicacion(txtUsuario, fotoPerfil, txtCategoria, txtContenido, fechaPublicacion, imagen, id){
+    let txtFecha = comprobarFecha(fechaPublicacion);
+
+    let publicacion = document.createElement('article');
+    let postHead = document.createElement('div');
+    let spanUsu = document.createElement('span');
+    let span = document.createElement('span');
+    let postBody = document.createElement('div');
+    let contenedorImagen = document.createElement('div');
+    let postFooter = document.createElement('div');
+    publicacion.classList.add('publicacion');
+    postHead.classList.add('postHead');
+    postBody.classList.add('postBody');
+    postFooter.classList.add('postFooter');
+    contenedorImagen.classList.add('contenedorImagen');
+
+    let usuario = document.createElement('p');
+    let category = document.createElement('p');
+    let icon = document.createElement('i');
+    let boton = document.createElement('button');
+    let iconUsu = document.createElement('img'); 
+    let contenido =  document.createElement('p');
+    let fecha = document.createElement('p');
+    usuario.classList.add('usuario');
+    category.classList.add('category');
+    contenido.classList.add('contenido');
+
+    usuario.textContent = txtUsuario;
+    iconUsu.classList.add('imgUsuario');
+    iconUsu.src = fotoPerfil;
+    icon.classList.add('fa-solid', 'fa-trash');
+    icon.style.color = 'red';
+    icon.id = id;
+    icon.addEventListener('click', e => eliminarPublicacion(e));
+    category.textContent = txtCategoria;
+    contenido.innerHTML = txtContenido;
+    boton.type = 'submit';
+    boton.name = 'perfil';
+    boton.value = txtUsuario;
+    fecha.textContent = txtFecha;
+    
+    boton.append(iconUsu);
+    spanUsu.append(iconUsu, usuario);
+    postHead.append(spanUsu);
+    span.append(category);
+    span.append(icon);
+    postHead.append(span);
+    
+    postBody.append(contenido);
+    postFooter.append(fecha);
+    publicacion.append(postHead);
+    if(imagen != null){
+        contenedorImagen.append(crearImagen(imagen));
+        // postBody.append(contenedorImagen);
         publicacion.append(contenedorImagen);
     }
     publicacion.append(postBody);
@@ -257,6 +351,19 @@ function sumarVoto(id){
 
 function restarVoto(id){
     fetch('../../controller/RestarVoto.php',{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'id=' + encodeURIComponent(id)
+    })
+}
+
+function eliminarPublicacion(e){
+    let id = e.target.id;
+    let article = e.target.closest('article');
+    article.style.display = 'none';
+    fetch('../../controller/EliminarPublicacion.php',{
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded'

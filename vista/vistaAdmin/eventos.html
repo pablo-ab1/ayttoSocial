@@ -1,64 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../styles/style.css">
-    <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AytoSocial</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+    <script
+      src="https://kit.fontawesome.com/97658d7d9e.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <header>
-        <span> <img src="../../resources/img/logo.png" class="logo" alt=""> </span>
-        <nav class="linksHeader">
-            <a href="prueba.html">Publicaciones</a>
-            <a href="denuncias.html">Denuncias</a>
-            <a href="encuestas.html">Encuestas</a>
-            <a href="" class="elementoTablet activo">Eventos</a>
-        </nav>
-        <nav class="elementoMovil">
-            <a href="prueba.html"><i class="fa-solid fa-circle-info"></i></a>
-            <a href="denuncias.html"><i class="fa-solid fa-triangle-exclamation"></i></a>
-            <a href="encuestas.html"><i class="fa-solid fa-square-poll-horizontal"></i></a>
-            <a href="eventos.html" class="elementoMovil activo"><i class="fa-solid fa-calendar-days"></i></a>
-        </nav>
-        <span>
-        <form action="../../controller/Controller.php" method="POST" class="elementoOrdenador">
-            <button type="submit" class="btn" name="cerrarSesion">Cerrar Sesión</button>
-            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+      <span>
+        <img src="../../resources/img/logo.png" class="logo" alt="" />
+      </span>
+      <nav class="linksHeader">
+        <a href="prueba.html">Publicaciones</a>
+        <a href="denuncias.html">Denuncias</a>
+        <a href="encuestas.html">Encuestas</a>
+        <a href="" class="elementoTablet activo">Eventos</a>
+      </nav>
+      <nav class="elementoMovil">
+        <a href="prueba.html"><i class="fa-solid fa-circle-info"></i></a>
+        <a href="denuncias.html"
+          ><i class="fa-solid fa-triangle-exclamation"></i
+        ></a>
+        <a href="encuestas.html"
+          ><i class="fa-solid fa-square-poll-horizontal"></i
+        ></a>
+        <a href="eventos.html" class="elementoMovil activo"
+          ><i class="fa-solid fa-calendar-days"></i
+        ></a>
+      </nav>
+      <span>
+        <form
+          action="../../controller/Controller.php"
+          method="POST"
+          class="elementoOrdenador"
+        >
+          <button type="submit" class="btn" name="cerrarSesion">
+            Cerrar Sesión
+          </button>
+          <button type="submit" name="perfil" value="propio" class="btn">
+            <a><i class="fa-solid fa-user-tie"></i></a>
+          </button>
         </form>
-        <form action="../../controller/Controller.php" method="POST" class="elementoMovil">
-            <button type="submit" class="btn" name="cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
-            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+        <form
+          action="../../controller/Controller.php"
+          method="POST"
+          class="elementoMovil"
+        >
+          <button type="submit" class="btn" name="cerrarSesion">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+          <button type="submit" name="perfil" value="propio" class="btn">
+            <a><i class="fa-solid fa-user-tie"></i></a>
+          </button>
         </form>
-    </span>
+      </span>
     </header>
 
     <main>
-    <aside class="eventos">
+      <aside class="eventos">
         <section class="proxEventos elementoMovil elementoTablet">
-            <h2>Próximos eventos</h2>
-            <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
+          <h2>Próximos eventos</h2>
+          <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
         </section>
-    </aside> 
+      </aside>
     </main>
     <footer>
-        <span>
-            <img src="../../resources/img/logo.png" alt="">
-        </span>
-        <span><p>AytoSocial © 2025. Todos los derechos reservados.</p></span>
-        <span>
-            <a href="politicaCookies.html">Política de cookies</a>
-            <a href="">Política de Privacidad</a>
-            <a href="">Aviso Legal/Términos y Condiciones</a>
-        </span>
+      <span>
+        <img src="../../resources/img/logoGrey.png" alt="" />
+      </span>
+      <span><p>AytoSocial © 2025. Todos los derechos reservados.</p></span>
+      <span>
+        <a href="politicaCookies.html">Política de cookies</a>
+        <a href="">Política de Privacidad</a>
+        <a href="">Aviso Legal/Términos y Condiciones</a>
+      </span>
     </footer>
     <!-- <nav class="navegacion"></nav> -->
     <script src="../../script/scriptPrincipal.js"></script>
-    
-</body>
+  </body>
 </html>
-
 
 <!-- <div class="publicacion">
     <div class="postHead">

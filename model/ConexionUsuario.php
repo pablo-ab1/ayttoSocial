@@ -48,42 +48,60 @@ class ConexionUsuario extends Conexion
 
     public function actualizarUsuario($username, $email, $nombre, $apellidos, $fechaNac, $id)
     {
-        if (isset($_FILES["fotoPerfil"])) {
+        if (isset($_FILES["fotoPerfil"]) && $_FILES["fotoPerfil"]["error"] === UPLOAD_ERR_OK) {
             $directorio = "../resources/imgUsuario/";
-            $pathTemporal = $_FILES["fotoPerfil"]["tmp_name"];
-            $nombreArchivo = basename($_FILES["fotoPerfil"]["name"]);
+            $nombreArchivo = uniqid() . "_" . basename($_FILES["fotoPerfil"]["name"]);
             $ruta = $directorio . $nombreArchivo;
 
-
-            if (move_uploaded_file($pathTemporal, $ruta)) {
+            if (move_uploaded_file($_FILES["fotoPerfil"]["tmp_name"], $ruta)) {
                 try {
-                    $ruta = '../' . $ruta;
-                    $query = "UPDATE usuario SET username = :username, email = :email, nombre = :nombre, apellidos = :apellidos, fotoPerfil = :fotoPerfil, fechaNacimiento = :fechaNac WHERE id = :id";
-                    $preparada = $this->pdo->prepare($query);
+                    $rutaBD = '../' . $ruta;
 
+                    $query = "UPDATE usuario 
+                          SET username = :username, email = :email, nombre = :nombre, 
+                              apellidos = :apellidos, fotoPerfil = :fotoPerfil, fechaNacimiento = :fechaNac 
+                          WHERE id = :id";
+
+                    $preparada = $this->pdo->prepare($query);
                     $preparada->bindParam(':username', $username);
                     $preparada->bindParam(':email', $email);
                     $preparada->bindParam(':fechaNac', $fechaNac);
                     $preparada->bindParam(':nombre', $nombre);
                     $preparada->bindParam(':apellidos', $apellidos);
-                    $preparada->bindParam(':fotoPerfil', $ruta);
+                    $preparada->bindParam(':fotoPerfil', $rutaBD);
                     $preparada->bindParam(':id', $id);
 
-                    if ($preparada->execute()) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return $preparada->execute();
                 } catch (PDOException $e) {
-                    echo "Error: " . $e->getMessage($username, $email, $nombre, $apellidos, $fechaNac);
+                    error_log("Error al actualizar usuario con imagen: " . $e->getMessage());
+                    return false;
                 }
             } else {
                 return "Error moviendo el archivo";
             }
         } else {
-            return "No se ha subido ningun archivo o ha ocurrido un error";
+            try {
+                $query = "UPDATE usuario 
+                      SET username = :username, email = :email, nombre = :nombre, 
+                          apellidos = :apellidos, fechaNacimiento = :fechaNac 
+                      WHERE id = :id";
+
+                $preparada = $this->pdo->prepare($query);
+                $preparada->bindParam(':username', $username);
+                $preparada->bindParam(':email', $email);
+                $preparada->bindParam(':fechaNac', $fechaNac);
+                $preparada->bindParam(':nombre', $nombre);
+                $preparada->bindParam(':apellidos', $apellidos);
+                $preparada->bindParam(':id', $id);
+
+                return $preparada->execute();
+            } catch (PDOException $e) {
+                error_log("Error al actualizar usuario sin imagen: " . $e->getMessage());
+                return false;
+            }
         }
     }
+
 
 
     public function getUsername($id)

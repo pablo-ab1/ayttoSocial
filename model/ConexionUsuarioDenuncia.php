@@ -68,7 +68,7 @@ class ConexionUsuarioDenuncia extends Conexion
     {
         try {
 
-            $query = "SELECT username, fotoPerfil, categoria, texto, denuncia.fechaCreacion, denuncia.id  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id where usuario.id LIKE :id ORDER BY fechaCreacion DESC";
+            $query = "SELECT username, fotoPerfil, imagen, votosFavor, votosContra, categoria, texto, denuncia.fechaCreacion, denuncia.id  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id where usuario.id LIKE :id ORDER BY fechaCreacion DESC";
             $preparada = $this->pdo->prepare($query);
 
             $preparada->bindParam(':id', $id);

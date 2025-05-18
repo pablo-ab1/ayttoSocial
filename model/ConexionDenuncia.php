@@ -31,20 +31,38 @@ class ConexionDenuncia extends Conexion
         }
     }
 
-    public function insertarDenunciaImagen($id_usuario, $categoria, $texto, $imagen)
+    public function insertarDenunciaImagen($id_usuario, $categoria, $texto)
     {
-        $directorio = "../resources/imgPublicaciones/";
-        $archivo = $directorio . basename($_FILES['img']['name']);
+        $directorio = "../resources/images/";
 
-        // Optional: create the folder if it doesn't exist
-        if (!file_exists($directorio)) {
-            mkdir($directorio, 0777, true);
-        }
+        if (isset($_FILES["imagenDenuncia"])) {
+            $pathTemporal = $_FILES["imagenDenuncia"]["tmp_name"];
+            $nombreArchivo = basename($_FILES["imagenDenuncia"]["name"]);
+            $ruta = $directorio . $nombreArchivo;
 
-        if (move_uploaded_file($_FILES['img']['tmp_name'], $archivo)) {
-            echo "Image successfully uploaded to: " . $archivo;
+            if (move_uploaded_file($pathTemporal, $ruta)) {
+                try {
+                    $query = "INSERT INTO denuncia (id_usuario, categoria, texto, imagen) VALUES (:id_usuario, :categoria, :texto, :imagen)";
+                    $preparada = $this->pdo->prepare($query);
+
+                    $preparada->bindParam(':id_usuario', $id_usuario);
+                    $preparada->bindParam(':categoria', $categoria);
+                    $preparada->bindParam(':texto', $texto);
+                    $preparada->bindParam(':imagen', $ruta);
+
+                    if ($preparada->execute()) {
+                        return "Denuncia creada";
+                    } else {
+                        return "La denuncia no se ha podido crear";
+                    }
+                } catch (PDOException $e) {
+                    return "Error: " . $e->getMessage();
+                }
+            } else {
+                return "Error moviendo el archivo";
+            }
         } else {
-            echo "Error uploading the image.";
+            return "No se ha subido ningun archivo o ha ocurrido un error";
         }
     }
 
@@ -52,7 +70,7 @@ class ConexionDenuncia extends Conexion
     {
         try {
 
-            $query = "SELECT username, fotoPerfil, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id ORDER BY id DESC LIMIT 100";
+            $query = "SELECT username, fotoPerfil, imagen, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id ORDER BY id DESC LIMIT 100";
             $preparada = $this->pdo->prepare($query);
 
             // $preparada->bindParam(':lim',(int)$limite);
@@ -68,7 +86,7 @@ class ConexionDenuncia extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, denuncia.id, denuncia.fechaCreacion  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id WHERE fechaCreacion like :fecha ORDER BY id DESC";
+            $query = "SELECT username, fotoPerfil, imagen, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id WHERE fechaCreacion like :fecha ORDER BY id DESC";
 
 
             $preparada = $this->pdo->prepare($query);
@@ -85,7 +103,7 @@ class ConexionDenuncia extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, denuncia.id, denuncia.fechaCreacion  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
+            $query = "SELECT username, fotoPerfil, imagen, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
 
 
             $preparada = $this->pdo->prepare($query);
@@ -113,7 +131,7 @@ class ConexionDenuncia extends Conexion
     {
         try {
 
-            $query = "SELECT username, categoria, texto, denuncia.id, denuncia.fechaCreacion  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id WHERE texto like :texto ORDER BY id DESC";
+            $query = "SELECT username, fotoPerfil, imagen, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id WHERE texto like :texto ORDER BY id DESC";
 
 
             $preparada = $this->pdo->prepare($query);

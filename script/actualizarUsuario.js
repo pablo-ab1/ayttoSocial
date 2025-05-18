@@ -41,7 +41,6 @@ function mostrarDatos(datos){
 }
 
 function cambiarFoto(){
-    console.log('hoola')
     const img = document.querySelector('.fotoPerfil');
     if(this.files && this.files[0]){
         

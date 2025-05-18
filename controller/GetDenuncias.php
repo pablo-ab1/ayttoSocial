@@ -9,9 +9,7 @@ $cUsuDenun = new ConexionUsuarioDenuncia;
 if (isset($_SESSION['usuarioElegido'])) {
     if ($_SESSION['usuarioElegido'] == 'propio') {
         $usuarioActual = $cUsuDenun->obtenerInfoIdUsuarioDenun($_SESSION['usuarioActual']);
-        $usuarioActual['actual'] = 'true';
         echo json_encode($usuarioActual);
-        $_SESSION['usuarioElegido'] = null;
     } else {
         echo ('hola');
     }
