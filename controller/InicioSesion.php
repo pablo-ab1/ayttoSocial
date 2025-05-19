@@ -44,6 +44,9 @@ if (isset($_POST['enviar'])) {
                 break;
         }
     } else {
+        $contenido = "Inicio de sesion fallido";
+        $ruta = "../resources/logs/errorlog.txt";
+        file_put_contents($ruta, $contenido);
         header('Location: ../vista/inicioSesion.html');
     }
 }

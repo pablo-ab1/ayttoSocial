@@ -660,6 +660,20 @@ footer img{
     height: 38px;
 }
 
+ #popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #c43d2f;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    font-family: sans-serif;
+    display: none;
+    z-index: 1000;
+}
+
 @media(max-width: 1100px){
     main{
         display: block;
