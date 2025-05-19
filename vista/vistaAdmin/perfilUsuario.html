@@ -16,12 +16,50 @@
       <span>
         <img src="../../resources/img/logo.png" class="logo" alt="" />
       </span>
-      <nav>
-        <a href="prueba.html">Publicaciones</a>
+      <nav class="linksHeader">
+        <a href="prueba.html" class="">Publicaciones</a>
         <a href="denuncias.html">Denuncias</a>
         <a href="encuestas.html">Encuestas</a>
+        <a href="eventos.html" class="elementoTablet">Eventos</a>
       </nav>
-      <span><i class="fa-solid fa-circle-user"></i> </span>
+      <nav class="elementoMovil">
+        <a href="prueba.html"><i class="fa-solid fa-circle-info"></i></a>
+        <a href="" class="activo"
+          ><i class="fa-solid fa-triangle-exclamation"></i
+        ></a>
+        <a href="encuestas.html"
+          ><i class="fa-solid fa-square-poll-horizontal"></i
+        ></a>
+        <a href="eventos.html" class="elementoMovil"
+          ><i class="fa-solid fa-calendar-days"></i
+        ></a>
+      </nav>
+      <span>
+        <form
+          action="../../controller/Controller.php"
+          method="POST"
+          class="elementoOrdenador"
+        >
+          <button type="submit" class="btn" name="cerrarSesion">
+            Cerrar Sesión
+          </button>
+          <button type="submit" name="perfil" value="propio" class="btn">
+            <a><i class="fa-solid fa-user-tie"></i></a>
+          </button>
+        </form>
+        <form
+          action="../../controller/Controller.php"
+          method="POST"
+          class="elementoMovil"
+        >
+          <button type="submit" class="btn" name="cerrarSesion">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+          <button type="submit" name="perfil" value="propio" class="btn">
+            <a><i class="fa-solid fa-user-tie"></i></a>
+          </button>
+        </form>
+      </span>
     </header>
     <main>
       <aside class="infoUsuario">
@@ -46,10 +84,10 @@
       </section>
 
       <aside class="recomendados">
-        <section class="proxEventos">
+        <!-- <section class="proxEventos">
           <h2>Usuarios recomendados</h2>
           <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
-        </section>
+        </section> -->
       </aside>
     </main>
     <footer>

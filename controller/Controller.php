@@ -11,6 +11,9 @@ $cDenun = new ConexionDenuncia();
 $cEncu = new ConexionEncuesta();
 $usu = new ConexionUsuario();
 
+if (!$_SESSION['usuarioActual']) {
+    header('Location: ../vista/inicioSesion.html');
+}
 
 $permisos = $usu->getDatosConId($_SESSION['usuarioActual'])['permisos'];
 echo ($permisos);
@@ -22,10 +25,6 @@ if (isset($_POST['perfil'])) {
         $_SESSION['usuarioElegido'] = 'propio';
         volver('perfilUsuario.html');
     }
-
-    // $_SESSION['usuarioElegido'] = $_POST['perfil'];
-    // // echo $_SESSION['usuarioElegido'];
-    // header('Location: ../vista/perfilUsuario.html');
 }
 
 if (isset($_POST['getDatos'])) {

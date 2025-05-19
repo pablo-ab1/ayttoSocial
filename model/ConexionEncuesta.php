@@ -10,7 +10,7 @@ class ConexionEncuesta extends Conexion
         parent::__construct();
     }
 
-    function getEncuestas()
+    function obtenerEncuestas()
     {
         try {
 
@@ -44,6 +44,57 @@ class ConexionEncuesta extends Conexion
             } else {
                 return "La encuesta no se ha podido crear";
             }
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function obtenerEncuestasFecha($fecha)
+    {
+        try {
+
+            $query = "SELECT *  FROM encuesta WHERE fechaCreacion like :fecha ORDER BY id DESC";
+
+
+            $preparada = $this->pdo->prepare($query);
+            $preparada->bindParam(':fecha', $fecha);
+            $preparada->execute();
+
+            return $preparada->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function obtenerEncuestasFechaCategoria($fecha, $categoria)
+    {
+        try {
+
+            $query = "SELECT * FROM encuesta WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
+
+
+            $preparada = $this->pdo->prepare($query);
+            $preparada->bindParam(':fecha', $fecha);
+            $preparada->bindParam(':cat', $categoria);
+            $preparada->execute();
+
+            return $preparada->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    public function obtenerEncuestasTexto($texto)
+    {
+        try {
+
+            $query = "SELECT * FROM encuesta WHERE titulo like :texto ORDER BY id DESC";
+
+            $preparada = $this->pdo->prepare($query);
+            $preparada->bindParam(':texto', $texto);
+            $preparada->execute();
+
+            return $preparada->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
