@@ -11,6 +11,7 @@ const proxEventos = document.querySelector('.proxEventos');
 const asideFiltros = document.querySelector('.filtros');
 const btnFiltros = document.querySelector('.mostrarFiltros');
 const btnOcultarFiltros = document.querySelector('.ocultarFiltros');
+const inputImagen = document.querySelector('#inputImagen');
 let selectCategoria = false;
 if(document.getElementById('categoria')){
     selectCategoria = document.getElementById('categoria');
@@ -191,19 +192,19 @@ btnOcultarFiltros.addEventListener('click', ()=>{
     btnFiltros.style.display = 'block';
 })
 
-document.getElementById('inputImagen').addEventListener('change', (evento) => {
-    console.log('hola');
-  const file = evento.target.files[0];
-  const previsualizacion = document.getElementById('previsualizacion');
+if(inputImagen != null){
+    inputImagen.addEventListener('change', (evento) => {
+        const file = evento.target.files[0];
+        const previsualizacion = document.getElementById('previsualizacion');
+        const reader = new FileReader();
 
-
-    const reader = new FileReader();
+        reader.onload = function(e) {
+            previsualizacion.src = e.target.result;
+        };
     
-    reader.onload = function(e) {
-      previsualizacion.src = e.target.result;
-    };
-    
-    reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
 });
+}
+
 {/* <select id="categoria" value="General" name="categoria" required> 
 <option value="General">General</option> */}

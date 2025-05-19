@@ -35,7 +35,9 @@ async function getDenuncias() {
         }
         
         datos = await respuesta.text();
+        console.log(datos);
         denuncias = JSON.parse(datos);
+
         for( let denuncia in denuncias) {
             denuncias[denuncia].tipo = 'denuncia';
             denunciasPublicaciones.push(denuncias[denuncia]);
@@ -61,11 +63,15 @@ async function getPublicaciones() {
         }
         
         datos = await respuesta.text();
+        console.log(datos);
         publicaciones = JSON.parse(datos);
-        for(let publicacion in publicaciones){
+        if(publicaciones != ''){
+            for(let publicacion in publicaciones){
             publicaciones[publicacion].tipo = 'publicacion';
             denunciasPublicaciones.push(publicaciones[publicacion]);
         }
+        }
+        
         console.log(publicaciones);
         console.log(denunciasPublicaciones);
         mostrarDenunciasPublicaciones();
@@ -83,9 +89,10 @@ mostrarSiguienteDenuncia.addEventListener('click', (e)=>{
 function mostrarDenunciasPublicaciones() {
     for(i = numPagDenuncia-5; i <= numPagDenuncia-1; i++ ){
         principal = document.querySelector('main .principal form');
-        if(denunciasPublicaciones[i] == 'denuncia'){
+        if(denunciasPublicaciones[i].tipo == 'denuncia'){
             principal.append(crearDenuncia(denunciasPublicaciones[i].username, denunciasPublicaciones[i].categoria, denunciasPublicaciones[i].fotoPerfil, denunciasPublicaciones[i].texto, denunciasPublicaciones[i].fechaCreacion, denunciasPublicaciones[i].imagen, denunciasPublicaciones[i].votosFavor, denunciasPublicaciones[i].votosContra, denunciasPublicaciones[i].id));    
         }else{
+            console.log('Publicacion: ' + denunciasPublicaciones[i]);
             principal.append(crearPublicacion(denunciasPublicaciones[i].username, denunciasPublicaciones[i].fotoPerfil, denunciasPublicaciones[i].categoria, denunciasPublicaciones[i].texto, denunciasPublicaciones[i].fechaCreacion, denunciasPublicaciones[i].imagen, denunciasPublicaciones[i].id)); 
         }
     }
@@ -363,6 +370,7 @@ function eliminarPublicacion(e){
     let id = e.target.id;
     let article = e.target.closest('article');
     article.style.display = 'none';
+    console.log('hola');
     fetch('../../controller/EliminarPublicacion.php',{
         method: 'POST',
         headers:{

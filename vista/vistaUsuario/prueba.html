@@ -25,11 +25,11 @@
         <span>
         <form action="../../controller/Controller.php" method="POST" class="elementoOrdenador">
             <button type="submit" class="btn" name="cerrarSesion">Cerrar Sesión</button>
-            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user"></i></a></button>
         </form>
         <form action="../../controller/Controller.php" method="POST" class="elementoMovil">
             <button type="submit" class="btn" name="cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
-            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user"></i></a></button>
         </form>
     </span>
     </header>
@@ -54,6 +54,9 @@
     <button class="elementoTablet mostrarFiltros">Filtros <i class="fa-solid fa-sort-down"></i></button>
     <button class="elementoTablet ocultarFiltros">Filtros <i class="fa-solid fa-sort-up"></i></button>
     <section class="principal">
+         <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
+
+         </form>
         <nav>
             <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
         </nav>
