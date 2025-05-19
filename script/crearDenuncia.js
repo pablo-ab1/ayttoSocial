@@ -5,24 +5,11 @@ let siguienteDenuncia = document.getElementById('siguientePagina');
 let mostrarSiguienteDenuncia = document.getElementById('mostrarSiguiente');
 getDenuncias();
 
-
-
-// botonDenuncia.addEventListener('click', () => {
-//     main = document.querySelector('main');
-//     txtUsuario = document.querySelector('#usuario');
-//     txtCategoria = document.querySelector('#categoria');
-//     txtContenido = document.querySelector('#comentario');
-//     main.prepend(crearPublicacion(txtUsuario.value, txtCategoria.value, txtContenido.value));
-//     // txtUsuario.value = txtCategoria.value = txtContenido.value = "";
-// });
-
-
 let denuncias = [];
 let denunciasPublicaciones =[];
 
 async function getDenuncias() {
     let url = '../../controller/GetDenuncias.php';
-    console.log(url);
 
     try{
         
@@ -33,7 +20,6 @@ async function getDenuncias() {
         
         datos = await respuesta.text();
         denuncias = JSON.parse(datos);
-        console.log(denuncias);
         mostrarDenuncias();
 
     }catch (error){
@@ -49,9 +35,7 @@ mostrarSiguienteDenuncia.addEventListener('click', (e)=>{
 function mostrarDenuncias() {
     for(i = numPagDenuncia-5; i <= numPagDenuncia-1; i++ ){
         principal = document.querySelector('main .principal form');
-        console.log(denuncias.actual);
         if(denuncias.actual){
-            console.log('Ho Hey')
             principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].fotoPerfil, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].imagen, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id, denuncias.actual));    
         }else{
             principal.append(crearPublicacion(denuncias[i].username, denuncias[i].categoria, denuncias[i].fotoPerfil, denuncias[i].texto, denuncias[i].fechaCreacion, denuncias[i].imagen, denuncias[i].votosFavor, denuncias[i].votosContra, denuncias[i].id));    

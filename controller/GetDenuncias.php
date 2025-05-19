@@ -10,9 +10,7 @@ if (isset($_SESSION['usuarioElegido'])) {
     if ($_SESSION['usuarioElegido'] == 'propio') {
         $usuarioActual = $cUsuDenun->obtenerInfoIdUsuarioDenun($_SESSION['usuarioActual']);
         echo json_encode($usuarioActual);
-    } else {
-        echo ('hola');
-    }
+    }   
 } else if (isset($_COOKIE['filtros'])) {
     $filtros = json_decode($_COOKIE['filtros']);
     if (isset($filtros[1])) {

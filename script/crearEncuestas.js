@@ -4,7 +4,6 @@ getEncuestas();
 
 async function getEncuestas() {
     let url = '../../controller/GetEncuestas.php';
-    console.log(url);
 
     try{
         
@@ -14,14 +13,11 @@ async function getEncuestas() {
         }
         
         datos = await respuesta.text();
-        // console.log(datos);
         encuestas = JSON.parse(datos);
-        console.log(encuestas);
         encuestas.forEach(encuesta => {
             principal = document.querySelector('main .principal form');
             principal.append(crearEncuesta(encuesta));
         });
-        // mostrarPublicaciones();
 
     }catch (error){
         console.error(error.message);
@@ -107,17 +103,3 @@ function crearDiv(max, votos){
 
     return div;
 }
-
-{/* <article class="encuesta">
-                <h3>Titulo encuesta 3</h3>
-                <span><input type="radio" name="idEncuesta" value="1" id="1"> <label for="1">Parque Central de Villa Verde</label>  </span>
-                <div class="votos primera"></div>
-                <span><input type="radio" name="idEncuesta" value="2" id="2"> <label for="2">Plaza Mayor de San Arcadio</span>
-                </label> <div class="votos otra"></div>
-                <span><input type="radio" name="idEncuesta" value="3" id="3"> <label for="3"> Paseo Marítimo de Costa Clara</label></span>
-                <div class="votos otra"></div>
-                <span>
-                    <input type="radio" name="idEncuesta" value="4" id="4"> <label for="4">Centro Cultural El Mirador</label>
-                </span>
-                <div class="votos otra"></div> 
-            </article> */}

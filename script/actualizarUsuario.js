@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     getDatos();
     const input = document.getElementById('fotoPerfil');
-    console.log(input);
     input.addEventListener('change', cambiarFoto);
 })
 
@@ -13,7 +12,6 @@ async function getDatos() {
         if (datos.error) {
             console.error('Error:', datos.error);
         } else {
-            console.log('User data:', datos);
             mostrarDatos(datos[0]);
         }
 

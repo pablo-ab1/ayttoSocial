@@ -31,23 +31,6 @@ class ConexionPublicacion extends Conexion
         }
     }
 
-    // public function insertarPublicacionImagen($id_usuario, $categoria, $texto, $imagen)
-    // {
-    //     $directorio = "../resources/imgPublicaciones/";
-    //     $archivo = $directorio . basename($_FILES['img']['name']);
-
-    //     // Optional: create the folder if it doesn't exist
-    //     if (!file_exists($directorio)) {
-    //         mkdir($directorio, 0777, true);
-    //     }
-
-    //     if (move_uploaded_file($_FILES['img']['tmp_name'], $archivo)) {
-    //         echo "Image successfully uploaded to: " . $archivo;
-    //     } else {
-    //         echo "Error uploading the image.";
-    //     }
-    // }
-
     public function insertarPublicacionImagen($id_usuario, $categoria, $texto){
     $directorio = "../resources/images/";
 
@@ -89,10 +72,8 @@ class ConexionPublicacion extends Conexion
         try {
 
             $query = "SELECT username, fotoPerfil, categoria, texto, publicacion.id, publicacion.imagen, publicacion.fechaCreacion  FROM publicacion LEFT JOIN usuario ON publicacion.id_usuario = usuario.id ORDER BY id DESC";
-            // LIMIT $limite,5
+        
             $preparada = $this->pdo->prepare($query);
-
-            // $preparada->bindParam(':lim',(int)$limite);
             $preparada->execute();
 
             return $preparada->fetchAll(PDO::FETCH_ASSOC);

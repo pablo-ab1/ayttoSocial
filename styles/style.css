@@ -111,7 +111,6 @@ header nav a:hover{
 aside{
     width: 20%;
     background-color: var(--web-background-color);
-    /* border: 1px solid white; */
 }
 
 aside.filtros{
@@ -162,27 +161,6 @@ main{
     padding-bottom: 30px;
 }
 
-/* #formCrear{
-    background-color: var(--background-color);
-    max-width: 500px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    transform: translate(-50%, -50%);
-    justify-content: center;
-    border: 1px solid black;
-    border-radius: 15px;
-    padding: 20px;
-    gap: 10px;
-    display: none;
-}
-
-#formCrear *{
-    background-color: var(--background-color);
-    border: none;
-} */
-
 .cerrar{
     position: relative;
     transform: translate(-100%);
@@ -223,10 +201,7 @@ main{
 .publicacion{
     background-color: var(--background-color) ;
     width: 80%;
-    /* padding: 10px; */
     margin: auto;
-    /* border: 1px solid var(--border-color); */
-
 }
 
 .postHead{
@@ -259,7 +234,6 @@ main{
     padding: 5px 9px;
     font-size: 0.8em;
     font-style: italic;
-    /* color: #E0E0E0; */
 }
 
 .contenido{

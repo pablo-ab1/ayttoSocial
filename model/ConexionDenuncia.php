@@ -73,7 +73,6 @@ class ConexionDenuncia extends Conexion
             $query = "SELECT username, fotoPerfil, imagen, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id ORDER BY id DESC LIMIT 100";
             $preparada = $this->pdo->prepare($query);
 
-            // $preparada->bindParam(':lim',(int)$limite);
             $preparada->execute();
 
             return $preparada->fetchAll(PDO::FETCH_ASSOC);
@@ -104,7 +103,6 @@ class ConexionDenuncia extends Conexion
         try {
 
             $query = "SELECT username, fotoPerfil, imagen, categoria, texto, denuncia.id, denuncia.fechaCreacion, votosFavor, votosContra  FROM denuncia LEFT JOIN usuario ON denuncia.id_usuario = usuario.id WHERE fechaCreacion like :fecha AND categoria LIKE :cat ORDER BY id DESC";
-
 
             $preparada = $this->pdo->prepare($query);
             $preparada->bindParam(':fecha', $fecha);

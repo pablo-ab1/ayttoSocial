@@ -1,4 +1,3 @@
-// let formCrear = document.querySelector('#formCrear');
 let botonDesplegable = document.querySelectorAll('.btnDesplegable');
 let textarea = false;
 if(document.querySelector(".publicacionNueva textarea")){
@@ -70,7 +69,6 @@ async function getEventos() {
         }
 
         datos = await respuesta.text();
-        console.log(datos);
         evento = JSON.parse(datos);
 
         evento.forEach(ev =>{
@@ -205,6 +203,3 @@ if(inputImagen != null){
         reader.readAsDataURL(file);
 });
 }
-
-{/* <select id="categoria" value="General" name="categoria" required> 
-<option value="General">General</option> */}

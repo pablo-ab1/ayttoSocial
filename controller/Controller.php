@@ -16,7 +16,6 @@ if (!$_SESSION['usuarioActual']) {
 }
 
 $permisos = $usu->getDatosConId($_SESSION['usuarioActual'])['permisos'];
-echo ($permisos);
 
 
 if (isset($_POST['perfil'])) {

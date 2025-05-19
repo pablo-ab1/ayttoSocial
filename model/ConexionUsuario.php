@@ -10,15 +10,6 @@ class ConexionUsuario extends Conexion
         parent::__construct();
     }
 
-    // public function nuevoUsuario($usuario, $email, $contraseña)
-    // {
-    //     $c = password_hash($contraseña, PASSWORD_DEFAULT);
-    //     $consulta = $this->bd_conect->prepare('INSERT INTO usuarios VALUES (:u, :e, :c)');
-    //     $consulta->bindParam(':u', $usuario);
-    //     $consulta->bindParam(':e', $email);
-    //     $consulta->bindParam(':c', $c);
-    // }
-
     public function insertarUsuario($username, $email, $password, $nombre, $apellidos, $fechaNac)
     {
 

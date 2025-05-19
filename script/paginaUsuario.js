@@ -10,7 +10,6 @@ async function getDatos() {
         if (datos.error) {
             console.error('Error:', datos.error);
         } else {
-            console.log('User data:', datos);
             mostrarDatos(datos[0]);
         }
 

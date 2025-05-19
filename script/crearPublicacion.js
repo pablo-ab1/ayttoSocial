@@ -5,24 +5,10 @@ let siguiente = document.getElementById('siguientePagina');
 let mostrarSiguiente = document.getElementById('mostrarSiguiente');
 getPublicaciones();
 
-
-
-// boton.addEventListener('click', () => {
-//     main = document.querySelector('main');
-//     txtUsuario = document.querySelector('#usuario');
-//     txtCategoria = document.querySelector('#categoria');
-//     txtContenido = document.querySelector('#comentario');
-//     main.prepend(crearPublicacion(txtUsuario.value, txtCategoria.value, txtContenido.value));
-//     // txtUsuario.value = txtCategoria.value = txtContenido.value = "";
-// });
-
-
-
 let publicaciones =[];
 
 async function getPublicaciones() {
     let url = '../../controller/GetPublicaciones.php';
-    console.log(url);
 
     try{
         
@@ -32,9 +18,7 @@ async function getPublicaciones() {
         }
         
         datos = await respuesta.text();
-        // console.log(datos);
         publicaciones = JSON.parse(datos);
-        console.log(publicaciones);
         mostrarPublicaciones();
 
     }catch (error){
@@ -50,7 +34,6 @@ mostrarSiguiente.addEventListener('click', (e)=>{
 function mostrarPublicaciones() {
     for(i = numPag-5; i <= numPag-1; i++ ){
         principal = document.querySelector('main .principal form');
-        console.log(publicaciones.actual);
         if(publicaciones.actual){
             principal.append(crearPublicacion(publicaciones[i].username, publicaciones[i].fotoPerfil, publicaciones[i].categoria, publicaciones[i].texto, publicaciones[i].fechaCreacion, publicaciones[i].imagen, publicaciones[i].id, publicaciones.actual));    
         }else{
@@ -113,7 +96,6 @@ function crearPublicacion(txtUsuario, fotoPerfil, txtCategoria, txtContenido, fe
     publicacion.append(postHead);
     if(imagen != null){
         contenedorImagen.append(crearImagen(imagen));
-        // postBody.append(contenedorImagen);
         publicacion.append(contenedorImagen);
     }
     publicacion.append(postBody);
@@ -136,7 +118,6 @@ function crearImagen(urlImagen){
 }
 
 function mostrarImagenGrande(url) {
-    // Crear fondo oscuro
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
     overlay.style.top = 0;
@@ -147,15 +128,13 @@ function mostrarImagenGrande(url) {
     overlay.style.display = 'flex';
     overlay.style.justifyContent = 'center';
     overlay.style.alignItems = 'center';
-    overlay.style.zIndex = 9999;
+    overlay.style.zIndex = 1000;
 
-    // Crear imagen grande
     const imgGrande = document.createElement('img');
     imgGrande.src = url;
     imgGrande.style.maxWidth = '90%';
     imgGrande.style.maxHeight = '90%';
 
-    // Cerrar al hacer clic en el fondo
     overlay.addEventListener('click', () => {
         overlay.remove();
     });
@@ -197,9 +176,4 @@ function eliminarPublicacion(e){
         },
         body: 'id=' + encodeURIComponent(id)
     })
-    // .then(response => response.text())
-    // .then(data => {
-
-    // });
-
 }

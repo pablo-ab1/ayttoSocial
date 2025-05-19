@@ -2,10 +2,9 @@ const fechNac = document.getElementById('fechaNac')
 const hoy = new Date();
 const minEdad = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
 const maxDate = minEdad.toISOString().split('T')[0];
+const form = document.getElementById('formRegistro');
 
 fechNac.max = maxDate;
-
-const form = document.getElementById('formRegistro')
 
 form.addEventListener('submit', (e) => {
     const password = document.getElementById('contraseña').value;
