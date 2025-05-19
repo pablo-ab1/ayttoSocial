@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AytoSocial</title>
     <link rel="stylesheet" href="../../styles/style.css" />
-    <link rel="stylesheet" href="../../styles/styleUsuario.css" />
     <script
       src="https://kit.fontawesome.com/97658d7d9e.js"
       crossorigin="anonymous"
@@ -17,20 +16,20 @@
         <img src="../../resources/img/logo.png" class="logo" alt="" />
       </span>
       <nav class="linksHeader">
-        <a href="prueba.html" class="">Publicaciones</a>
+        <a href="prueba.html">Publicaciones</a>
         <a href="denuncias.html">Denuncias</a>
         <a href="encuestas.html">Encuestas</a>
-        <a href="eventos.html" class="elementoTablet">Eventos</a>
+        <a href="" class="elementoTablet activo">Eventos</a>
       </nav>
       <nav class="elementoMovil">
         <a href="prueba.html"><i class="fa-solid fa-circle-info"></i></a>
-        <a href="" class="activo"
+        <a href="denuncias.html"
           ><i class="fa-solid fa-triangle-exclamation"></i
         ></a>
         <a href="encuestas.html"
           ><i class="fa-solid fa-square-poll-horizontal"></i
         ></a>
-        <a href="eventos.html" class="elementoMovil"
+        <a href="eventos.html" class="elementoMovil activo"
           ><i class="fa-solid fa-calendar-days"></i
         ></a>
       </nav>
@@ -61,33 +60,13 @@
         </form>
       </span>
     </header>
-    <main>
-      <aside class="infoUsuario">
-        <div class="info">
-          <img src="" alt="" />
-          <h1 id="username"></h1>
-          <ul id="datos"></ul>
-          <a href="actualizarDatos.html"><i class="fa-solid fa-pen"></i></a>
-        </div>
-      </aside>
-      <section class="principal">
-        <form
-          action="../../controller/Controller.php"
-          method="POST"
-          id="formCrear"
-        ></form>
-        <nav>
-          <button id="mostrarSiguiente">
-            <i class="fa-solid fa-plus"></i>
-          </button>
-        </nav>
-      </section>
 
-      <aside class="recomendados">
-        <!-- <section class="proxEventos">
-          <h2>Usuarios recomendados</h2>
+    <main>
+      <aside class="eventos">
+        <section class="proxEventos elementoMovil elementoTablet">
+          <h2>Próximos eventos</h2>
           <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
-        </section> -->
+        </section>
       </aside>
     </main>
     <footer>
@@ -101,9 +80,15 @@
         <a href="">Aviso Legal/Términos y Condiciones</a>
       </span>
     </footer>
+    <!-- <nav class="navegacion"></nav> -->
+    <script src="../../script/scriptPrincipal.js"></script>
   </body>
-
-  <script src="../../script/paginaUsuario.js"></script>
-  <script src="../../script/crearDenunciaPublicacion.js"></script>
-  <!-- <script src="../../script/crearPublicacion.js"></script> -->
 </html>
+
+<!-- <div class="publicacion">
+    <div class="postHead">
+        <span><button><i class="fa-solid fa-user" style="color: #800040;"></i></button><a class="usuario">Usuario</a></span>
+        <span><a class="category">Categoría</a> <i class="fa-solid fa-trash" style="color:red;"></i></div></span>
+    <p class="contenido">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin pretium dolor, sit amet ultrices risus porttitor nec. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam nec aliquet lectus. Mauris pretium quis risus quis rutrum. Vestibulum aliquam congue congue.</p>
+    <div class="postFooter"><p>8:30</p></div>
+</div> -->

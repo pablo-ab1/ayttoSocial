@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AytoSocial</title>
     <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/styleEncuesta.css">
     <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <span> <img src="../../resources/img/logo.png" class="logo" alt=""> </span>
         <nav class="linksHeader">
-            <a href="" class="activo">Publicaciones</a>
+            <a href="prueba.html">Publicaciones</a>
             <a href="denuncias.html">Denuncias</a>
-            <a href="encuestas.html">Encuestas</a>
+            <a href="encuestas.html" class="activo">Encuestas</a>
             <a href="eventos.html" class="elementoTablet">Eventos</a>
         </nav>
         <nav class="elementoMovil">
-            <a href="" class="activo"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="prueba.html"><i class="fa-solid fa-circle-info"></i></a>
             <a href="denuncias.html"><i class="fa-solid fa-triangle-exclamation"></i></a>
-            <a href="encuestas.html"><i class="fa-solid fa-square-poll-horizontal"></i></a>
+            <a href="encuestas.html" class="activo"><i class="fa-solid fa-square-poll-horizontal"></i></a>
             <a href="eventos.html" class="elementoMovil"><i class="fa-solid fa-calendar-days"></i></a>
         </nav>
         <span>
@@ -54,6 +55,35 @@
     <button class="elementoTablet mostrarFiltros">Filtros <i class="fa-solid fa-sort-down"></i></button>
     <button class="elementoTablet ocultarFiltros">Filtros <i class="fa-solid fa-sort-up"></i></button>
     <section class="principal">
+        <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
+            <article class="encuestaNueva">
+                <div class="tituloEncuesta">
+                    <textarea placeholder="Nueva encuesta" name="titulo" ></textarea>  
+                    <select id="categoria" name="categoria" required> 
+                    </select>
+            </div>
+                <div class="opciones">
+                    <input type="text" id="opcion1" name="opcion1" placeholder="Opción 1*" required>
+                    <input type="text" id="opcion2" name="opcion2" placeholder="Opción 2*" required>
+                    <input type="text" id="opcion3" placeholder="Opción 3" name="opcion3">
+                    <input type="text" id="opcion4" placeholder="Opción 4" name="opcion4">
+                </div>
+                <div><button id="crear" value="encuesta" name="crear">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div>
+            </article>
+        </form>
+        <!-- <form action="../../controller/Controller.php" method="POST" id="formEncuestas">
+            <article class="encuesta">
+                <h3>Titulo encuesta 3</h3>
+                <span><input type="radio" name="idEncuesta" value="1" id="1"> <label for="1">Parque Central de Villa Verde</label>  </span>
+                <div class="votos primera"></div>
+                <span><input type="radio" name="idEncuesta" value="2" id="2"> <label for="2">Plaza Mayor de San Arcadio</span>
+                </label> <div class="votos otra"></div>
+                <span><input type="radio" name="idEncuesta" value="3" id="3"> <label for="3"> Paseo Marítimo de Costa Clara</label></span>
+                <div class="votos otra"></div>
+                <span><input type="radio" name="idEncuesta" value="4" id="4"> <label for="4">Centro Cultural El Mirador</label></span>
+                <div class="votos otra"></div> 
+            </article>
+        </form> -->
         <nav>
             <button id="mostrarSiguiente"><i class="fa-solid fa-plus"></i></button>
         </nav>
@@ -79,8 +109,9 @@
             <a href="">Aviso Legal/Términos y Condiciones</a>
         </span>
     </footer>
-    <!-- <nav class="navegacion"></nav> -->
-    <script src="../../script/crearPublicacion.js"></script>
+    <nav class="navegacion"></nav>
+    <script src="../../script/crearEncuestas.js"></script>
+
     <script src="../../script/scriptPrincipal.js"></script>
     
 </body>

@@ -3,29 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <title>AytoSocial</title>
+    <link rel="stylesheet" href="../../styles/style.css">
     <script src="https://kit.fontawesome.com/97658d7d9e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <span> <img src="../resources/img/logo.png" class="logo" alt=""> </span>
-        <nav>
+        <span> <img src="../../resources/img/logo.png" class="logo" alt=""> </span>
+        <nav class="linksHeader">
             <a href="" class="activo">Publicaciones</a>
-            <a href="">Denuncias</a>
-            <a href="">Encuestas</a>
+            <a href="denuncias.html">Denuncias</a>
+            <a href="encuestas.html">Encuestas</a>
+            <a href="eventos.html" class="elementoTablet">Eventos</a>
+        </nav>
+        <nav class="elementoMovil">
+            <a href="" class="activo"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="denuncias.html"><i class="fa-solid fa-triangle-exclamation"></i></a>
+            <a href="encuestas.html"><i class="fa-solid fa-square-poll-horizontal"></i></a>
+            <a href="eventos.html" class="elementoMovil"><i class="fa-solid fa-calendar-days"></i></a>
         </nav>
         <span>
-        <form action="../controller/Controller.php" method="POST">
-            <a href="../vista/inicioSesion.html">Cerrar Sesión</a>
-            <button type="submit" name="perfil" value="propio"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+        <form action="../../controller/Controller.php" method="POST" class="elementoOrdenador">
+            <button type="submit" class="btn" name="cerrarSesion">Cerrar Sesión</button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
+        </form>
+        <form action="../../controller/Controller.php" method="POST" class="elementoMovil">
+            <button type="submit" class="btn" name="cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></button>
+            <button type="submit" name="perfil" value="propio" class="btn"><a ><i class="fa-solid fa-user-tie"></i></a></button>
         </form>
     </span>
     </header>
 
     <main>
     <aside class="filtros">
-        <form action="../controller/Controller.php" name="filtros" id="formFiltros" method="POST">
+        <form action="../../controller/Controller.php" name="filtros" id="formFiltros" method="POST">
             <input type="text" name="busqueda" id="busqueda" placeholder='&#xf002; Buscar' style="font-family:Quicksand, FontAwesome">
             <button type="submit" class="btn-filtrar" name="buscar" >Buscar</button>
             <button class="btnDesplegable">Categoría <i class="fa-solid fa-chevron-down"></i></button>
@@ -40,16 +51,20 @@
            <button type="submit" class="btn-filtrar" name="filtrar" >Filtrar</button>
         </form>
     </aside>
+    <button class="elementoTablet mostrarFiltros">Filtros <i class="fa-solid fa-sort-down"></i></button>
+    <button class="elementoTablet ocultarFiltros">Filtros <i class="fa-solid fa-sort-up"></i></button>
     <section class="principal">
-        <form action="../controller/Controller.php" method="POST" id="formCrear">
+        <form action="../../controller/Controller.php" method="POST" id="formCrear" enctype="multipart/form-data">
             <article class="publicacion publicacionNueva">
                 <div class="postHead">
                     <textarea placeholder="Nueva publicacion" name="texto" ></textarea>  
                     <select id="categoria" name="categoria" required> 
                     </select>
             </div>
-                <div class="postBody "></div>
-                <div class="postFooter "><button id="crear" name="crear" class="noVisible">Crear</button><span class="noVisible"><i class="fa-solid fa-image"></i></span></div> <!--<input type="file" accept="image/*">--> 
+                
+            <div class="postBody prev"><img src="" id="previsualizacion" alt=""></div>
+                <div class="postFooter"><button id="crear" name="crear" value="publicacion" class="noVisible">Crear</button><span class="noVisible"><input id="inputImagen" type="file" accept="image/*" name="imagenPublicacion"><label for="inputImagen"><i class="fa-solid fa-image iconoImagen"></i></label> </span></div>
+     
             </article>
         </form>
         <nav>
@@ -59,8 +74,8 @@
     </section>    
        
     
-    <aside class="eventos">
-        <section class="proxEventos">
+    <aside class="eventos elementoOrdenador">
+        <section class="proxEventos elementoOrdenador">
             <h2>Próximos eventos</h2>
             <i class="fa-solid fa-spinner fa-spin-pulse" id="cargandoEventos"></i>
         </section>
@@ -68,7 +83,7 @@
     </main>
     <footer>
         <span>
-            <img src="../resources/img/logo.png" alt="">
+            <img src="../../resources/img/logoGrey.png" alt="">
         </span>
         <span><p>AytoSocial © 2025. Todos los derechos reservados.</p></span>
         <span>
@@ -77,9 +92,9 @@
             <a href="">Aviso Legal/Términos y Condiciones</a>
         </span>
     </footer>
-    <nav class="navegacion"></nav>
-    <script src="../script/crearPublicacion.js"></script>
-    <script src="../script/scriptPrincipal.js"></script>
+    <!-- <nav class="navegacion"></nav> -->
+    <script src="../../script/crearPublicacion.js"></script>
+    <script src="../../script/scriptPrincipal.js"></script>
     
 </body>
 </html>
